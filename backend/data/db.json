@@ -1,0 +1,1294 @@
+{
+  "user": {
+    "username": "admin",
+    "password": "$2a$10$7k2Ze0sLBjJ3u7qR7JNPfuP0y9jt.fDmO22LgJ9YJ9gDYuJVGRvLS",
+    "createdAt": "2026-05-25T01:18:25.347Z"
+  },
+  "accounts": [
+    {
+      "id": "b02881f2-594d-46a7-9ce5-51fa41691203",
+      "name": "主",
+      "authType": "cookie",
+      "loginType": "browser",
+      "cookie": "5d018004c46cdc94ce69b7ac10175fa3:3b28d7ff01a8571dbab756e5a851e75b:d3f8432ac058e24e0c1538c162927132c0e2d4bae23367cc7b8138b2ae711bce757b3c267586172a5498ccb9746a1516a7f0b61d34b14c30d58632b65112f32dd5ca6e252a72677ad5b0249a736595a051c0687d96cf864d4046b2bf098a62eed1b27a083463d853038ce16b0425fc4ba507079c5d0c3a4c685f4c1df5f296d809386b5bae0663c3cecc5f7fae5a24056d7d7194bfe046af8803edee280d63af9ae4ff63a5bb8cae7998568bcb55855a53a2c299476a11d69f9246557aa60fd8a64450cb19d22f13c9d950f5f12209ee8dd07847cf948836c9fa5c77d7e3e2a294c14e570a743ac77f1b60be201b6557edf94547070ef595784a46413e12817591412c9cb0332f0fde3981e0a4a25560010a6faeb5c2298660812a1bc05c54c920cf2f54bc0bf60185b7ac8535823335f01397fe4eb8038b727dc9a4db47693012c610771fc55b4fa27ef8392a795bdaeafd9cdf2b62db8a1efeb5fecf042d9c86d48f4909b51b1a85c63d32cb00bd6cea930cf9be125f43b846d0fa54e01af5c927511421d242d7f2d7caff00a4797cc9f1ea5ab15b0badb945f797b411721de370ed3b3edb54200239df19baaea09c1e2a2daaf9cfe2a5f90967bf56f66c2df79c06ab7f72b2786315b1563fbff8a786d33595aab5c92ac5b83ae10a53036dfcc46f5d7bc02aa59ec37f8611e790e07ad190da4187f991883255bab94893a4a1d0e4e0ad42b64c03486030a9454aca8b51223dc2922077817c477a063b3abe99de66988ecadc5c4f9f8411fbc702872abae4d5171764c55cab396afb907c8d27e4c3744a4b40c87e458cf5e5426fa874f6f62255888f63485c6220f9cb48d80782d72735135c05e268ae24a589e153ed59f15d13aa824db624a57f27dd0c1ddda83541df4734d7fdbcc014f2711d4dec19e8fada590bfe358124fe8f237870dc6798317f13d5bc0c3701dce26e520ac7d67c414d2ff69be88dbba79a9bfda02d5bb6b816c58907cbea58ea903d6a9a11838f74e3d696a58f9699b39530a301969ee0a2a89e8e95d61c2035a0a799b7067f251873928d92703e9eb58c9eccf197c46e4213e78d5333b630bb636f30e197b639b32f4378fb75b2c8d1b929bd29f2e4a4c8f991c8fb4cb4e3e8a49eb2c30d045b9ffe032ea048f2c2272b086d1954eafac730a272fb496062881a5e53f98f41defd82b297e1447a4cd99193843abbfb93d0367ba266f7450efa0e043867043fbaeaf515859c89e9ee2f374944e44bb5b21f6db3bd6b07ffb01246886e314ab5b8178179d784d2e23ea275cc7407b5defdbf7043e3d53be31fe0bdd7acc0",
+      "profilePath": "profiles/b02881f2-594d-46a7-9ce5-51fa41691203",
+      "username": "",
+      "password": "",
+      "remark": "浏览器登录",
+      "enabled": true,
+      "lastKeepAlive": "2026-05-27T06:25:49.138Z",
+      "createdAt": "2026-05-26T14:16:16.563Z",
+      "updatedAt": "2026-05-27T06:25:49.138Z"
+    },
+    {
+      "id": "eba98613-81f5-46b9-b090-5244d9b4ae28",
+      "name": "副",
+      "authType": "cookie",
+      "loginType": "browser",
+      "cookie": "a276097a160dd0b120022bef3483b69e:ff25ed7222a76790a746c93d36c9bdda:952de5e69760a9a3fd71a85209d96064b28b58e75c93f0b2a34924fb124f98d77988feb284981c4c0613a20b4f4450a15cb4136d32d241cb45faf90e50961aed39e98371e07bd58b06615868a1ffcbe85883d5ba5b6724eb30d535ebae997765fbd83ed3620edc902fe01885aa3a5fc6a4c8b59e7ba8f792451665208c9d22d5d37f9403551387f2ef3d2c12fa6b2969485e80fefa5573d205f0414b8f9ba47925ed8229b7140c719ccd5f8c393741a41c88cc58a2c8a821a2788f7301f6089c3261feb5570a7dd16ff64e40aac315f3a3763b62d941ba77003f3ebccc3163dcfa0a21f093ebf257c8e47f252b40e976c5d8c839e3430ec181caf17712b1240c29323846b91a02b681bc388139898be05c27a3296172a0683f426ea1404a4fd75c95211d13882000f60e2f0c26fc5034ce07372229695a6149675737e006016c2536d8d2902c4f36f21c5a2d8cdc3ea8e742990744353e2ae412f9aac132d163cdb3aca09c7fea58ca940b11c8aa1a027f38d4730a8eb3df1a2c659c23bb7ddfec93b41a9dab292d8b2c286ea89cad85f4f611a149537c7e0da76150ddb42cca7b2884a0c985c5d016d26082b8f1ebba80a3d6f3cbd6487c9360bb50572d398af8bbf01e4d865079440add43ad0a5dbccfb0486a0071ca7fb9c89bcc564f41601f91fe72aa5feb7ff4f97bc333",
+      "profilePath": "profiles/eba98613-81f5-46b9-b090-5244d9b4ae28",
+      "username": "",
+      "password": "",
+      "remark": "浏览器登录",
+      "enabled": true,
+      "lastKeepAlive": "2026-05-26T14:16:46.035Z",
+      "createdAt": "2026-05-26T14:16:46.035Z",
+      "updatedAt": "2026-05-26T14:16:46.035Z"
+    }
+  ],
+  "records": [
+    {
+      "id": "30438473-f090-42cb-860e-7b15ee44c288",
+      "taskId": "7168ebc0-9a78-4062-9d94-797e877ebc44",
+      "title": "服装店老板必看！这吊牌能种出花🌱",
+      "content": "姐妹们！我挖到宝了！！\n\n最近我们服装店上新，设计师小姐姐突然塞给我一堆“种子纸吊牌”，说这玩意儿不光能挂衣服，还能种出花来🌼\n\n一开始我还半信半疑，直到她当场撕了一张丢进花盆……过了3天，土里真的冒出了嫩芽！！我整个下巴都惊掉了😱\n\n关键是它完全环保可降解！普通的塑料吊牌扔掉要几百年才烂，这个埋土里就变成了花的养料，太治愈了吧～\n\n我们店现在每个新衣服上都拴一张，顾客拿到手都忍不住拍照发朋友圈，还问我“能不能多给两张回去种”😂\n\n而且种子纸表面可以印刷logo和尺码，不影响正常使用，高端又走心。现在进店的客人都会多看两眼这件衣服，感觉衣服瞬间有了生命力！\n\n真诚建议：服装店老板们冲这个吊牌，既能减少塑料污染，又能让顾客记住你的品牌，回头率直接拉满🔥\n\n价格也很良心，300张起订，比普通吊牌贵不了多少，但是体验感翻倍！\n\n我已经打算下次补货再囤500张，给每个春夏新款都配上，让衣服从里到外都是绿色的～🌿",
+      "tags": [
+        "服装店好物",
+        "种子纸吊牌",
+        "环保创业",
+        "小众设计",
+        "可持续时尚"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a1641d50000000035025e71",
+          "retries": 0
+        }
+      ],
+      "createdAt": "2026-05-27T00:58:28.038Z",
+      "completedAt": "2026-05-27T00:59:01.946Z"
+    },
+    {
+      "id": "c130afed-a020-4868-bf03-5d0747ba66c5",
+      "taskId": "9daae5de-0660-4217-979a-6137a148c37a",
+      "title": "服装店老板必看！环保种子纸吊牌🌱",
+      "content": "姐妹们！最近店里换了一款超有爱的吊牌，瞬间被顾客夸爆了！就是这种种子纸吊牌，种在土里真的能发芽哦！🌿\n\n之前一直纠结传统吊牌不环保，还显得没啥创意。这款种子纸吊牌直接解决了我的痛点：纸质是环保可降解的，埋进花盆里，浇浇水，几天就能看到小芽冒出来！顾客拿到衣服都忍不住拍照发朋友圈，无形中帮店里做了一波免费宣传～📸\n\n最戳我的是它的设计感！吊牌本身有留白，可以随手写些暖心小句子，比如“感谢你让地球更美好”，或者简单印上店名和logo，瞬间提升品牌调性。而且种子纸还自带一个小信封包装，拆开时仪式感拉满，拆完还能种花，完全没有浪费！🎁\n\n现在店里每件衣服都配这种吊牌，顾客反馈超好，都说“第一次见到这么有心的吊牌”，还有回头客专门问能不能单买吊牌回家种着玩～如果你也是服装店老板，想悄悄卷死同行，赶紧安排上！环保又浪漫的细节，真的会让品牌瞬间发光✨",
+      "tags": [
+        "种子纸吊牌",
+        "环保创业",
+        "服装店灵感",
+        "创意包装",
+        "可持续时尚"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a3.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b3.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c3.png"
+      ],
+      "status": "completed",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a15c0470000000007022345",
+          "retries": 0
+        }
+      ],
+      "createdAt": "2026-05-26T15:45:50.534Z",
+      "completedAt": "2026-05-26T15:46:15.647Z"
+    },
+    {
+      "id": "6fd085c7-fc0b-43c5-b041-419dec531b50",
+      "taskId": "a653d427-a1a2-43a6-ada4-9af323eaea53",
+      "title": "👀 第2套·种子纸吊牌｜环保可降解！",
+      "content": "姐妹们！今天必须给你们安利这个种子纸吊牌！\n\n作为一个服装店老板，我真的被它惊艳到了！\n\n环保可降解\n\n✅ 种子纸中的佼佼者\n✅ 适合服装店老板使用\n✅ 口语化种草风风格，真实体验\n\n用过的人都说好，赶紧冲！",
+      "tags": [
+        "种子纸吊牌",
+        "种子纸",
+        "种草",
+        "服装店老板",
+        "必买清单"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a2.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b2.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c2.png"
+      ],
+      "status": "completed",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a15c0270000000008000b35",
+          "retries": 0
+        }
+      ],
+      "createdAt": "2026-05-26T15:45:19.436Z",
+      "completedAt": "2026-05-26T15:45:44.523Z"
+    },
+    {
+      "id": "9e9ca3c4-7dc4-487a-a1ca-7a4c12de3273",
+      "taskId": "68dc95ad-c8d4-4169-874b-0009fc96faa9",
+      "title": "服装店吊牌别扔！种出小森林🌱",
+      "content": "姐妹们！今天必须给服装店老板们安利一个神仙小物——种子纸吊牌！🌿\n\n事情是这样的，上周进货时发现衣服上挂的吊牌居然能种草？一开始我还以为是噱头，结果拆开泡水埋土里，三天就冒绿芽了！现在办公室窗台排排站着我亲手种的“小苗苗”，同事们路过都要摸一下叶子，超治愈～💚\n\n👉 重点来了：这个吊牌是环保可降解材质，卖给顾客时它是个好看又环保的吊牌，顾客拆下来种土里，就等于给品牌种了一颗“会成长的广告”。顾客一边养草一边念叨你家店名，下次买衣服不首选你家？！\n\n而且！种子纸上面自带logo和品牌名，种出来的小苗上也能隐约看到字迹（亲测），这种“把衣服变成种子”的仪式感，年轻女孩们真的会疯狂拍照发朋友圈，等于免费帮你打广告啊！\n\n最后划重点：成本才几毛钱，但你的吊牌从此不再是一次性垃圾，而是顾客的“绿植盲盒”。服装店老板们，冲就是了！🪴",
+      "tags": [
+        "种子纸吊牌",
+        "服装店营销",
+        "环保可持续",
+        "绿植盲盒",
+        "小众好物"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a15c008000000000803303f",
+          "retries": 0
+        }
+      ],
+      "createdAt": "2026-05-26T15:44:47.812Z",
+      "completedAt": "2026-05-26T15:45:13.355Z"
+    },
+    {
+      "id": "104fbcec-1043-4808-b3b8-92816be7b458",
+      "taskId": "bdf70792-1c6b-4cc9-a22b-808b5f933d9d",
+      "title": "服装店点名要！这个吊牌能种出花🌱",
+      "content": "姐妹们！！最近被一家服装店老板安利了个神仙小物，我直接原地种草🌿\n\n就是这种种子纸吊牌！！看着平平无奇，其实暗藏玄机✨\n\n吊牌用的是环保可降解的种子纸，里面真的藏着花种子🌻你用完衣服标签，别扔！！直接塞土里浇水，过几天就能冒小芽～\n\n咱们店里的衣服用上这个吊牌，客人拿到手都惊呼：哇塞，这也太有仪式感了吧！🎁有的客人还专门拍照发朋友圈，自动帮咱们打广告📸\n\n而且！这个吊牌是a3/b3/c3套装，每个都不一样，植物种类也随机，像开盲盒一样～\n\n最关键是！！环保属性拉满，现在客户都吃这套，你挂上这个吊牌，哪怕衣服贵一点她们也觉得值，因为“这是会发芽的吊牌”啊！\n\n我试了一下，真的能种出来！！小芽超级治愈，放在办公桌或者收银台上，每天都想多看几眼💚\n\n服装店老板们，赶紧冲！这种又能让客人开心、又能自动传播、还环保的神器，别家店用上了你家还没上，那就落后了🔥",
+      "tags": [
+        "种子纸吊牌",
+        "服装店神器",
+        "环保可降解",
+        "种草好物",
+        "服装店营销"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a3.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b3.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c3.png"
+      ],
+      "status": "completed",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a15be330000000007026b20",
+          "retries": 0
+        }
+      ],
+      "createdAt": "2026-05-26T15:36:58.871Z",
+      "completedAt": "2026-05-26T15:37:24.033Z"
+    },
+    {
+      "id": "76402f34-b46c-46d6-a971-7d85001b2338",
+      "taskId": "321eb80c-8991-4575-88a1-69965815e6e2",
+      "title": "服装店吊牌别再扔了！种个花吧🌱",
+      "content": "姐妹们！！我真的被这家服装店老板的巧思感动到了😭\n\n本来只是逛街买衣服，随手拆吊牌的时候发现手感不对劲！仔细一看——这吊牌居然是种子纸做的？！老板说只要埋土里浇水就能长出小花花🌼\n\n🌟环保又治愈，谁懂啊！\n现在的服装品牌都在卷设计、卷面料，没想到居然还有人在吊牌上这么用心！种子纸摸起来比普通纸厚实一点，有那种质朴的手感，埋进花盆里两天就发芽了，真的有被绿植治愈到🌿\n\n🌟老板说这种种子纸可以完全降解，不会对环境造成负担～而且吊牌上印着品牌logo和植物小百科，连吊牌绳都是棉麻的，从里到外都在传递环保理念💚\n\n🌟我买完衣服回家就把吊牌泡水、埋土，现在小苗已经冲出土面啦！每次浇水都超有成就感～而且这种润物细无声的环保方式，比那种冷冰冰的“我们使用环保材料”标语打动人心一万倍！\n\n🌟强烈建议所有服装店老板都学起来！一个小小的吊牌就能让顾客感受到品牌的温度和态度，还能顺便收获一波好评和回头客～我已经决定要把这家店码住了，下次还要回购！\n\n姐妹们冲啊！！环保又浪漫的种子吊牌，谁不爱呢🥹",
+      "tags": [
+        "#种子纸吊牌",
+        "#环保小创意",
+        "#服装店灵感",
+        "#绿植治愈",
+        "#可持续生活"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a2.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b2.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c2.png"
+      ],
+      "status": "completed",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a15be1400000000070284d5",
+          "retries": 0
+        }
+      ],
+      "createdAt": "2026-05-26T15:36:27.357Z",
+      "completedAt": "2026-05-26T15:36:52.831Z"
+    },
+    {
+      "id": "cbf17e3d-ef09-401a-a3bc-fdbdd73361be",
+      "taskId": "11ad29ce-d3b0-4522-b72c-74eb588ae84e",
+      "title": "🌿服装店老板狂喜！这个吊牌能种花🌸",
+      "content": "姐妹们，我宣布！我找到了今年最炸的服装吊牌——种子纸吊牌！🌱\n\n作为开了三年女装店的老油条，每次看到客人随手扔掉吊牌，我都暗暗心疼。直到上周设计师甩给我这个神仙好物，我直接囤了5000个！\n\n🌟【能发芽的吊牌】🌟\n你绝对想不到，这个看起来普普通通的卡片纸，里面藏着格桑花/薄荷/向日葵的种子！（三个颜色对应不同花语哦～）客人拆下来往土里一埋，浇水就能长出一片小森林！\n\n👉🏻环保党狂喜：100%可降解材料，买衣服还能支援地球🌍\n👉🏻社交货币+1：随手拍个种植过程发小红书，店铺自动带流量～\n👉🏻老客复购率暴涨：上次有个小姐姐为了集齐三种花色，连续买了五件T恤！\n\n🌈【我的实测小tips】\n1️⃣ 拆下来的种子纸先泡水2小时，再埋进湿润土壤\n2️⃣ 放在阳台散光处，每天喷喷水，5天左右就冒芽啦！\n3️⃣ 服装陈列时把吊牌朝外挂，客人路过直接沦陷🥹\n\n真的强烈安利给所有实体店主！成本才几毛钱，但客人拿到手的那种惊喜感，绝对物超所值！我已经把新季货品全换了这款吊牌，连隔壁花店老板都跑来问我进货渠道哈哈哈哈！\n\n#服装店经营 #环保种草 #种子纸吊牌 #实体店流量密码 #可持续时尚",
+      "tags": [
+        "服装店经营",
+        "环保种草",
+        "种子纸吊牌",
+        "实体店流量密码",
+        "可持续时尚"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a15b883000000000701390b",
+          "retries": 0
+        }
+      ],
+      "createdAt": "2026-05-26T15:12:42.178Z",
+      "completedAt": "2026-05-26T15:13:07.717Z"
+    },
+    {
+      "id": "6f52809c-886c-42cc-9b10-d49882d777ec",
+      "taskId": "396fbe3b-da93-4d9c-a2db-c64bec398d84",
+      "title": "🌱这吊牌能种出花！环保卷王我先冲了",
+      "content": "姐妹们！！我挖到了一个超级宝藏的小众环保好物\n就是这个可降解的种子纸吊牌🌿\n\n事情是这样的🤔\n每次买衣服拆下来的吊牌直接扔掉\n真的觉得好浪费啊啊啊\n但自从我发现了这个 种子纸吊牌 \n瞬间打破了我的认知！\n\n它不仅仅是一个吊牌\n还可以埋进土里 浇水 晒太阳\n过几天就能长出小豆苗或者小花花🌸\n每一片都是满满的惊喜和仪式感\n\n而且它的纸张是环保可降解的\n完全不会污染环境\n可以说是又潮又低碳了\n\n拿来当礼物送人也超有意义\n随便一件衣服配上这个吊牌\n档次直接拉满 对方收到肯定疯狂心动💕\n\n我已经把它安利给身边所有好朋友了\n大家都说 这波环保操作太圈粉了\n现在我们连拆吊牌都充满了期待\n\n如果你也喜欢这种 有爱又有趣 的小细节\n赶紧去搜搜这个宝藏吊牌吧\n绝对不会后悔的！！",
+      "tags": [
+        "环保好物",
+        "种子纸",
+        "可持续生活",
+        "小众设计",
+        "礼物推荐"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "items": [
+        {
+          "accountId": "457f85bb-e8ac-4dd3-848e-e7db523109e8",
+          "accountName": "小红书账号_2905",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a158c9b00000000070277a7",
+          "retries": 0
+        }
+      ],
+      "createdAt": "2026-05-26T12:05:21.781Z",
+      "completedAt": "2026-05-26T12:05:47.866Z"
+    },
+    {
+      "id": "75bd78d2-91d5-4856-a97c-ace58bd37342",
+      "taskId": "1a6c68dd-593e-495b-a103-33deaee9fb79",
+      "title": "😱救命！这款神器让我直接封神！",
+      "content": "姐妹们！我挖到宝了！今天必须给你们安利这款1，真的绝绝子！🔥\n\n先说说我的情况：作为一个4，我真的太懂那种无奈了。以前试过好多产品，要么没效果，要么踩雷，钱包都瘦了😭直到遇见它，我的人生直接开挂！\n\n它的卖点2真的牛！一开始我还不信，上手试了两周，效果肉眼可见。闺蜜见了都问是不是换了头，笑死！而且它属于34，用起来贼方便，懒人也能坚持，完全不费劲。\n\n重点来了！肤感巨舒服，吸收快，不油腻，第二天起来皮肤状态好到发光✨价格也很良心，性价比直接拉满。我已经回购三次了，囤货党狂喜！\n\n随便说一句：姐妹们听我的，有预算就冲，早买早享受！别再踩坑了，好东西值得拥有。相信我，试一次你就会回来感谢我！",
+      "tags": [
+        "种草神器",
+        "闭眼入",
+        "4必备",
+        "爱用好物",
+        "不踩雷"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "items": [
+        {
+          "accountId": "457f85bb-e8ac-4dd3-848e-e7db523109e8",
+          "accountName": "小红书账号_2905",
+          "status": "success",
+          "message": "发布成功（浏览器自动发布）",
+          "noteId": "browser_1779790945544",
+          "retries": 0
+        }
+      ],
+      "createdAt": "2026-05-26T10:22:01.613Z",
+      "completedAt": "2026-05-26T10:22:25.584Z"
+    },
+    {
+      "id": "09ca2907-6e0b-4b98-bb46-3d2ea1ad5742",
+      "taskId": "3c3863cf-c9a9-4641-b6d7-e987d785237c",
+      "title": "💯 1｜1！",
+      "content": "姐妹们！今天必须给你们安利这个1！\n\n作为一个1，我真的被它惊艳到了！\n\n1\n\n✅ 1中的佼佼者\n✅ 适合1使用\n✅ 口语化种草风风格，真实体验\n\n用过的人都说好，赶紧冲！",
+      "tags": [
+        "1",
+        "1",
+        "种草",
+        "1",
+        "必买清单"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "items": [
+        {
+          "accountId": "457f85bb-e8ac-4dd3-848e-e7db523109e8",
+          "accountName": "小红书账号_2905",
+          "status": "success",
+          "message": "发布成功（浏览器自动发布）",
+          "noteId": "browser_1779790918790",
+          "retries": 1
+        }
+      ],
+      "createdAt": "2026-05-26T10:20:17.599Z",
+      "completedAt": "2026-05-26T10:21:58.872Z"
+    },
+    {
+      "id": "f35ebeb1-f0a3-4a42-b91a-467874fb034c",
+      "taskId": "519d7507-a3e6-48c3-9520-a970b4fe248f",
+      "title": "😱这玩意儿也太好用了吧！冲就完了",
+      "content": "家人们谁懂啊！我最近挖到一个神仙好物，真的后悔没早点发现！！！\n\n先说下我的肤质：混油皮、T区疯狂出油、偶尔冒痘，以前早上化完妆到下午直接油光满面，补妆卡粉到怀疑人生…结果用了这个之后，真的被惊艳到！\n\n✨质地是那种软糯的啫喱状，上脸巨清爽，一抹就化水，吸收巨快！完全不会黏糊糊的，油皮亲妈本妈！\n\n✨用了大概一周吧，最明显的感觉就是出油量直接打对折！早上出门到晚上回家，鼻翼两侧都还是干爽的，痘痘闭口也肉眼可见的平了！\n\n✨而且它一点都不刺激！之前用酸类产品总是泛红刺痛，这个完全温和，每天早晚用都OK，敏感肌姐妹放心冲！\n\n使用方法也简单：洗完脸直接涂，或者混在乳液里都行，懒人福音没跑了～\n\n真心安利给所有被出油、痘痘困扰的姐妹们！性价比也是绝了，一杯奶茶钱就能到手，不冲真的会后悔！！！",
+      "tags": [
+        "油皮救星",
+        "祛痘好物",
+        "控油神器",
+        "平价护肤",
+        "夏日必备"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "failed",
+      "items": [
+        {
+          "accountId": "d5098df8-36fc-4e1e-811c-68024f1457d5",
+          "accountName": "小红书账号_2905",
+          "status": "failed",
+          "message": "未找到图片上传控件，请确认创作者平台页面已加载",
+          "noteId": null,
+          "retries": 2
+        }
+      ],
+      "createdAt": "2026-05-26T09:57:32.552Z",
+      "completedAt": "2026-05-26T09:58:31.820Z"
+    },
+    {
+      "id": "3e7cd1f5-195d-40d0-a47a-2125b43cbded",
+      "taskId": "3d1c3d32-c7a8-42a5-b645-76d471ca9a76",
+      "title": "✨ 1｜1！",
+      "content": "姐妹们！今天必须给你们安利这个1！\n\n作为一个1，我真的被它惊艳到了！\n\n1\n\n✅ 1中的佼佼者\n✅ 适合1使用\n✅ 口语化种草风风格，真实体验\n\n用过的人都说好，赶紧冲！",
+      "tags": [
+        "1",
+        "1",
+        "种草",
+        "1",
+        "必买清单"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "failed",
+      "items": [
+        {
+          "accountId": "d5098df8-36fc-4e1e-811c-68024f1457d5",
+          "accountName": "小红书账号_2905",
+          "status": "failed",
+          "message": "未找到图片上传控件，请确认创作者平台页面已加载",
+          "noteId": null,
+          "retries": 2
+        }
+      ],
+      "createdAt": "2026-05-26T09:52:32.483Z",
+      "completedAt": "2026-05-26T09:53:21.841Z"
+    },
+    {
+      "id": "9b591355-750e-4f0c-b126-ea7a58f8d97e",
+      "taskId": "c3b3eacc-4843-42a8-b1a9-69d1664265fc",
+      "title": "🌱种下这张纸，长出整个春天！",
+      "content": "姐妹们！我最近发现了个超治愈的神仙好物——种子纸！！🌸\n\n第一次拿到手的时候我震惊了：这张纸居然能种花？！没错！它不是普通的纸，里面藏着真正的植物种子🌻 用完直接往土里一埋，浇点水，几天后就能冒出嫩绿的小芽，简直太神奇了！\n\n而且它环保到爆！完全可降解，不会给地球增加任何负担🌍 对于我们这种想为环保出份力又不知道从何下手的小白来说，简直太友好了～\n\n我买的是薄荷种子纸，写满笔记后种在阳台小花盆里，现在每天看着小苗苗一天天长大，心情都变好了！办公桌上放一张，同事路过都来问我这是什么神仙宝贝😆\n\n送给闺蜜当礼物也很合适！她收到的时候一脸懵，等我说完怎么用，她当场就种下去了哈哈～现在每天跟我分享她的小苗长多高了🤣\n\n学生党、上班族、手工爱好者通通给我冲！而且价格超良心，一杯奶茶钱就能买好几张，既好玩又有意义，仪式感拉满！\n\n赶紧安排上，让生活多点绿色和惊喜吧～🌿✨",
+      "tags": [
+        "种子纸种草",
+        "环保好物",
+        "治愈系礼物",
+        "阳台种菜",
+        "生活仪式感"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "failed",
+      "items": [
+        {
+          "accountId": "d5098df8-36fc-4e1e-811c-68024f1457d5",
+          "accountName": "小红书账号_2905",
+          "status": "failed",
+          "message": "未找到图片上传控件，请确认创作者平台页面已加载",
+          "noteId": null,
+          "retries": 2
+        }
+      ],
+      "createdAt": "2026-05-26T09:51:06.172Z",
+      "completedAt": "2026-05-26T09:51:59.328Z"
+    },
+    {
+      "id": "d66c2d76-1b77-4f0f-9637-18e038c7964c",
+      "taskId": "b09bcd41-1b6b-44b6-b1b2-844cf101a53a",
+      "title": "🌱这纸能种出花？环保又治愈！",
+      "content": "姐妹们！最近挖到一个小众好物，简直让我直呼“这也太妙了吧”！就是这盒种子纸～\n\n第一次听说的时候我也愣住了，纸还能种花？拆开一看，手感跟普通纸差不多，但仔细摸能感觉到纸里藏着小小的颗粒。官方说这是可降解的材料，种子就嵌在纸浆里，用完直接埋土里浇水就能发芽🌿\n\n我试了试，把写满心愿的种子纸放进花盆，每天喷点水，一周后就冒出嫩绿的小芽！看着自己亲手“种”出来的小生命，真的有被治愈到～而且纸张埋在土里会自然降解，完全不会污染环境，适合咱们这种想环保又怕麻烦的懒人党✌️\n\n送给闺蜜当礼物也超有心意，她收到后惊讶得不行，说第一次见这种“会开花”的纸哈哈～上课写笔记、做手账、甚至包装小礼物都行，用完还能变盆栽，太适合学生党啦！\n\n现在每次看到桌上的小绿芽，心情都好到飞起～这种环保又浪漫的小物件，真的每个女生都值得一试！快去冲，保证你会回来感谢我💚",
+      "tags": [
+        "种子纸",
+        "环保好物",
+        "治愈系",
+        "学生党礼物",
+        "创意文具"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "failed",
+      "items": [
+        {
+          "accountId": "158c0d35-6157-4211-8e11-5096c757b678",
+          "accountName": "小红书账号_2014",
+          "status": "failed",
+          "message": "登录已失效，请在账号管理点「刷新登录」",
+          "noteId": null,
+          "retries": 2
+        },
+        {
+          "accountId": "5df5d8ae-bba8-496d-a79c-c8167391fff3",
+          "accountName": "小红书账号_5841",
+          "status": "failed",
+          "message": "登录已失效，请在账号管理点「刷新登录」",
+          "noteId": null,
+          "retries": 2
+        }
+      ],
+      "createdAt": "2026-05-26T09:48:17.640Z",
+      "completedAt": "2026-05-26T09:49:03.605Z"
+    },
+    {
+      "id": "fe1c4c06-1b26-4d53-ac87-fad52389fa5c",
+      "taskId": "3eb7af3d-1d29-4afc-9cdd-24d10334f120",
+      "title": "🌱会开花的纸！环保送礼天花板✨",
+      "content": "姐妹们！我挖到宝了！！真的是一张能开花的纸🌼\n\n之前一直想给朋友送点特别的礼物，结果刷到这个“种子纸”，直接把我圈粉了！它不是普通的纸，里面藏着植物种子！用完的包装、卡片、便签纸，统统不用扔，往土里一埋，浇水晒太阳，过几天就能冒出嫩绿的小芽苗🌿\n\n重点是——它是环保可降解的材质哦！完全不会污染环境，种出来的花还能拍照发朋友圈～我试了试，居然真的长出了小雏菊！太治愈了叭😭\n\n而且它的颜值也很在线，可以做成书签、贺卡、婚礼请柬，甚至企业伴手礼！送朋友、送对象，或者自己用，都能感受到那种“纸短情长”的浪漫～\n\n姐妹们，平时用纸的时候从来没想过还能变成花吧？反正我是一口气入了好几盒，打算给闺蜜每人发一张！这比送普通礼物有心多了！！\n\n快来一起种你的专属小花花吧～🌻\n\n📌小贴士：记得不要埋太深，保持湿润，耐心等几天就能收获惊喜哦✨",
+      "tags": [
+        "种子纸",
+        "环保礼物",
+        "治愈系好物",
+        "会开花的纸",
+        "小众浪漫"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a39.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b39.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c39.png"
+      ],
+      "status": "failed",
+      "items": [
+        {
+          "accountId": "158c0d35-6157-4211-8e11-5096c757b678",
+          "accountName": "小红书账号_2014",
+          "status": "failed",
+          "message": "Cookie 已过期，请重新扫码登录该账号",
+          "noteId": null,
+          "retries": 2
+        }
+      ],
+      "createdAt": "2026-05-26T08:33:55.033Z",
+      "completedAt": "2026-05-26T08:34:09.161Z"
+    },
+    {
+      "id": "da5cf51c-17a6-4726-ab59-beebe4938549",
+      "taskId": "c2e71736-06dc-4bb7-bb0e-ad8dc1ebb1ab",
+      "title": "🌱会开花的纸！环保送礼天花板✨",
+      "content": "姐妹们！我挖到宝了！！真的是一张能开花的纸🌼\n\n之前一直想给朋友送点特别的礼物，结果刷到这个“种子纸”，直接把我圈粉了！它不是普通的纸，里面藏着植物种子！用完的包装、卡片、便签纸，统统不用扔，往土里一埋，浇水晒太阳，过几天就能冒出嫩绿的小芽苗🌿\n\n重点是——它是环保可降解的材质哦！完全不会污染环境，种出来的花还能拍照发朋友圈～我试了试，居然真的长出了小雏菊！太治愈了叭😭\n\n而且它的颜值也很在线，可以做成书签、贺卡、婚礼请柬，甚至企业伴手礼！送朋友、送对象，或者自己用，都能感受到那种“纸短情长”的浪漫～\n\n姐妹们，平时用纸的时候从来没想过还能变成花吧？反正我是一口气入了好几盒，打算给闺蜜每人发一张！这比送普通礼物有心多了！！\n\n快来一起种你的专属小花花吧～🌻\n\n📌小贴士：记得不要埋太深，保持湿润，耐心等几天就能收获惊喜哦✨",
+      "tags": [
+        "种子纸",
+        "环保礼物",
+        "治愈系好物",
+        "会开花的纸",
+        "小众浪漫"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a39.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b39.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c39.png"
+      ],
+      "status": "failed",
+      "items": [
+        {
+          "accountId": "158c0d35-6157-4211-8e11-5096c757b678",
+          "accountName": "小红书账号_2014",
+          "status": "failed",
+          "message": "Cookie 已过期，请重新扫码登录该账号",
+          "noteId": null,
+          "retries": 2
+        }
+      ],
+      "createdAt": "2026-05-26T08:32:19.660Z",
+      "completedAt": "2026-05-26T08:32:31.938Z"
+    },
+    {
+      "id": "f682c555-8f12-403c-8a0a-8d4ed7076bd9",
+      "taskId": "e396038d-2bf3-4c00-aa26-ae726fee6a21",
+      "title": "🌱会开花的纸！环保送礼天花板✨",
+      "content": "姐妹们！我挖到宝了！！真的是一张能开花的纸🌼\n\n之前一直想给朋友送点特别的礼物，结果刷到这个“种子纸”，直接把我圈粉了！它不是普通的纸，里面藏着植物种子！用完的包装、卡片、便签纸，统统不用扔，往土里一埋，浇水晒太阳，过几天就能冒出嫩绿的小芽苗🌿\n\n重点是——它是环保可降解的材质哦！完全不会污染环境，种出来的花还能拍照发朋友圈～我试了试，居然真的长出了小雏菊！太治愈了叭😭\n\n而且它的颜值也很在线，可以做成书签、贺卡、婚礼请柬，甚至企业伴手礼！送朋友、送对象，或者自己用，都能感受到那种“纸短情长”的浪漫～\n\n姐妹们，平时用纸的时候从来没想过还能变成花吧？反正我是一口气入了好几盒，打算给闺蜜每人发一张！这比送普通礼物有心多了！！\n\n快来一起种你的专属小花花吧～🌻\n\n📌小贴士：记得不要埋太深，保持湿润，耐心等几天就能收获惊喜哦✨",
+      "tags": [
+        "种子纸",
+        "环保礼物",
+        "治愈系好物",
+        "会开花的纸",
+        "小众浪漫"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a39.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b39.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c39.png"
+      ],
+      "status": "failed",
+      "items": [
+        {
+          "accountId": "158c0d35-6157-4211-8e11-5096c757b678",
+          "accountName": "小红书账号_2014",
+          "status": "failed",
+          "message": "Cookie 已过期，请重新扫码登录该账号",
+          "noteId": null,
+          "retries": 2
+        }
+      ],
+      "createdAt": "2026-05-26T08:31:55.554Z",
+      "completedAt": "2026-05-26T08:32:09.307Z"
+    },
+    {
+      "id": "9f4dd8e2-dbdc-4e68-89fc-6dee1e9fe681",
+      "taskId": "c995c642-2923-4437-8446-2dacd96ab8cc",
+      "title": "🌱这纸会发芽！环保礼物卷疯了",
+      "content": "姐妹们！我挖到宝了！！\n最近收到一个超特别的礼物，打开一看居然是一张纸？？\n别急，这张纸可不一样，它！会！发！芽！\n\n💡种子纸就是那种环保到炸裂的神仙产品\n纯植物纤维做的，埋进土里，浇浇水\n几天后就冒出小苗苗，可以长出薄荷、薰衣草、小番茄…\n有点像开盲盒，但比盲盒有意义一百倍！\n\n🎁送礼天花板\n送朋友、送对象、送同事、送自己\n比奶茶券有心，比买的绿植更有仪式感\n还能写上手工祝福，我写完直接泪目了\n\n🌍重点是环保！\n普通纸用完就扔，种子纸用完还能变成植物\n降解无压力，种啥长啥，地球都要谢谢你\n\n📌怎么玩？\n1. 把纸泡湿，埋进土里\n2. 晒太阳，喷水保持湿润\n3. 过几天就能看到小生命破土而出\n治愈感拉满！适合手残党和植物新手\n\n真的，我愿称之为2024最走心的环保礼物\n快去给生活加点绿，一起种惊喜✨",
+      "tags": [
+        "#种子纸",
+        "#环保礼物",
+        "#会发芽的纸",
+        "#种草日记",
+        "#治愈小物"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "items": [
+        {
+          "accountId": "bb2d3b04-0567-4163-83d1-a303b363663e",
+          "accountName": "zhuhao1",
+          "status": "success",
+          "message": "发布成功（模拟模式）",
+          "noteId": "mock_1779779260138_bb2d3b04",
+          "retries": 0
+        }
+      ],
+      "createdAt": "2026-05-26T07:07:38.167Z",
+      "completedAt": "2026-05-26T07:07:40.139Z"
+    }
+  ],
+  "settings": {
+    "aiApi": {
+      "url": "",
+      "headers": {},
+      "apiKey": "",
+      "model": "gpt-3.5-turbo",
+      "supportVision": false
+    },
+    "xhsApi": {
+      "publishUrl": "",
+      "uploadUrl": ""
+    },
+    "publish": {
+      "interval": 3000,
+      "retryCount": 2,
+      "concurrency": 1
+    }
+  },
+  "tasks": {
+    "c995c642-2923-4437-8446-2dacd96ab8cc": {
+      "id": "c995c642-2923-4437-8446-2dacd96ab8cc",
+      "title": "🌱这纸会发芽！环保礼物卷疯了",
+      "content": "姐妹们！我挖到宝了！！\n最近收到一个超特别的礼物，打开一看居然是一张纸？？\n别急，这张纸可不一样，它！会！发！芽！\n\n💡种子纸就是那种环保到炸裂的神仙产品\n纯植物纤维做的，埋进土里，浇浇水\n几天后就冒出小苗苗，可以长出薄荷、薰衣草、小番茄…\n有点像开盲盒，但比盲盒有意义一百倍！\n\n🎁送礼天花板\n送朋友、送对象、送同事、送自己\n比奶茶券有心，比买的绿植更有仪式感\n还能写上手工祝福，我写完直接泪目了\n\n🌍重点是环保！\n普通纸用完就扔，种子纸用完还能变成植物\n降解无压力，种啥长啥，地球都要谢谢你\n\n📌怎么玩？\n1. 把纸泡湿，埋进土里\n2. 晒太阳，喷水保持湿润\n3. 过几天就能看到小生命破土而出\n治愈感拉满！适合手残党和植物新手\n\n真的，我愿称之为2024最走心的环保礼物\n快去给生活加点绿，一起种惊喜✨",
+      "tags": [
+        "#种子纸",
+        "#环保礼物",
+        "#会发芽的纸",
+        "#种草日记",
+        "#治愈小物"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "createdAt": "2026-05-26T07:07:38.167Z",
+      "updatedAt": "2026-05-26T07:07:40.139Z",
+      "items": [
+        {
+          "accountId": "bb2d3b04-0567-4163-83d1-a303b363663e",
+          "accountName": "zhuhao1",
+          "status": "success",
+          "message": "发布成功（模拟模式）",
+          "noteId": "mock_1779779260138_bb2d3b04",
+          "retries": 0
+        }
+      ]
+    },
+    "e396038d-2bf3-4c00-aa26-ae726fee6a21": {
+      "id": "e396038d-2bf3-4c00-aa26-ae726fee6a21",
+      "title": "🌱会开花的纸！环保送礼天花板✨",
+      "content": "姐妹们！我挖到宝了！！真的是一张能开花的纸🌼\n\n之前一直想给朋友送点特别的礼物，结果刷到这个“种子纸”，直接把我圈粉了！它不是普通的纸，里面藏着植物种子！用完的包装、卡片、便签纸，统统不用扔，往土里一埋，浇水晒太阳，过几天就能冒出嫩绿的小芽苗🌿\n\n重点是——它是环保可降解的材质哦！完全不会污染环境，种出来的花还能拍照发朋友圈～我试了试，居然真的长出了小雏菊！太治愈了叭😭\n\n而且它的颜值也很在线，可以做成书签、贺卡、婚礼请柬，甚至企业伴手礼！送朋友、送对象，或者自己用，都能感受到那种“纸短情长”的浪漫～\n\n姐妹们，平时用纸的时候从来没想过还能变成花吧？反正我是一口气入了好几盒，打算给闺蜜每人发一张！这比送普通礼物有心多了！！\n\n快来一起种你的专属小花花吧～🌻\n\n📌小贴士：记得不要埋太深，保持湿润，耐心等几天就能收获惊喜哦✨",
+      "tags": [
+        "种子纸",
+        "环保礼物",
+        "治愈系好物",
+        "会开花的纸",
+        "小众浪漫"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a39.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b39.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c39.png"
+      ],
+      "status": "failed",
+      "createdAt": "2026-05-26T08:31:55.554Z",
+      "updatedAt": "2026-05-26T08:32:09.306Z",
+      "items": [
+        {
+          "accountId": "158c0d35-6157-4211-8e11-5096c757b678",
+          "accountName": "小红书账号_2014",
+          "status": "failed",
+          "message": "Cookie 已过期，请重新扫码登录该账号",
+          "noteId": null,
+          "retries": 2
+        }
+      ]
+    },
+    "c2e71736-06dc-4bb7-bb0e-ad8dc1ebb1ab": {
+      "id": "c2e71736-06dc-4bb7-bb0e-ad8dc1ebb1ab",
+      "title": "🌱会开花的纸！环保送礼天花板✨",
+      "content": "姐妹们！我挖到宝了！！真的是一张能开花的纸🌼\n\n之前一直想给朋友送点特别的礼物，结果刷到这个“种子纸”，直接把我圈粉了！它不是普通的纸，里面藏着植物种子！用完的包装、卡片、便签纸，统统不用扔，往土里一埋，浇水晒太阳，过几天就能冒出嫩绿的小芽苗🌿\n\n重点是——它是环保可降解的材质哦！完全不会污染环境，种出来的花还能拍照发朋友圈～我试了试，居然真的长出了小雏菊！太治愈了叭😭\n\n而且它的颜值也很在线，可以做成书签、贺卡、婚礼请柬，甚至企业伴手礼！送朋友、送对象，或者自己用，都能感受到那种“纸短情长”的浪漫～\n\n姐妹们，平时用纸的时候从来没想过还能变成花吧？反正我是一口气入了好几盒，打算给闺蜜每人发一张！这比送普通礼物有心多了！！\n\n快来一起种你的专属小花花吧～🌻\n\n📌小贴士：记得不要埋太深，保持湿润，耐心等几天就能收获惊喜哦✨",
+      "tags": [
+        "种子纸",
+        "环保礼物",
+        "治愈系好物",
+        "会开花的纸",
+        "小众浪漫"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a39.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b39.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c39.png"
+      ],
+      "status": "failed",
+      "createdAt": "2026-05-26T08:32:19.660Z",
+      "updatedAt": "2026-05-26T08:32:31.938Z",
+      "items": [
+        {
+          "accountId": "158c0d35-6157-4211-8e11-5096c757b678",
+          "accountName": "小红书账号_2014",
+          "status": "failed",
+          "message": "Cookie 已过期，请重新扫码登录该账号",
+          "noteId": null,
+          "retries": 2
+        }
+      ]
+    },
+    "3eb7af3d-1d29-4afc-9cdd-24d10334f120": {
+      "id": "3eb7af3d-1d29-4afc-9cdd-24d10334f120",
+      "title": "🌱会开花的纸！环保送礼天花板✨",
+      "content": "姐妹们！我挖到宝了！！真的是一张能开花的纸🌼\n\n之前一直想给朋友送点特别的礼物，结果刷到这个“种子纸”，直接把我圈粉了！它不是普通的纸，里面藏着植物种子！用完的包装、卡片、便签纸，统统不用扔，往土里一埋，浇水晒太阳，过几天就能冒出嫩绿的小芽苗🌿\n\n重点是——它是环保可降解的材质哦！完全不会污染环境，种出来的花还能拍照发朋友圈～我试了试，居然真的长出了小雏菊！太治愈了叭😭\n\n而且它的颜值也很在线，可以做成书签、贺卡、婚礼请柬，甚至企业伴手礼！送朋友、送对象，或者自己用，都能感受到那种“纸短情长”的浪漫～\n\n姐妹们，平时用纸的时候从来没想过还能变成花吧？反正我是一口气入了好几盒，打算给闺蜜每人发一张！这比送普通礼物有心多了！！\n\n快来一起种你的专属小花花吧～🌻\n\n📌小贴士：记得不要埋太深，保持湿润，耐心等几天就能收获惊喜哦✨",
+      "tags": [
+        "种子纸",
+        "环保礼物",
+        "治愈系好物",
+        "会开花的纸",
+        "小众浪漫"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a39.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b39.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c39.png"
+      ],
+      "status": "failed",
+      "createdAt": "2026-05-26T08:33:55.033Z",
+      "updatedAt": "2026-05-26T08:34:09.161Z",
+      "items": [
+        {
+          "accountId": "158c0d35-6157-4211-8e11-5096c757b678",
+          "accountName": "小红书账号_2014",
+          "status": "failed",
+          "message": "Cookie 已过期，请重新扫码登录该账号",
+          "noteId": null,
+          "retries": 2
+        }
+      ]
+    },
+    "b09bcd41-1b6b-44b6-b1b2-844cf101a53a": {
+      "id": "b09bcd41-1b6b-44b6-b1b2-844cf101a53a",
+      "title": "🌱这纸能种出花？环保又治愈！",
+      "content": "姐妹们！最近挖到一个小众好物，简直让我直呼“这也太妙了吧”！就是这盒种子纸～\n\n第一次听说的时候我也愣住了，纸还能种花？拆开一看，手感跟普通纸差不多，但仔细摸能感觉到纸里藏着小小的颗粒。官方说这是可降解的材料，种子就嵌在纸浆里，用完直接埋土里浇水就能发芽🌿\n\n我试了试，把写满心愿的种子纸放进花盆，每天喷点水，一周后就冒出嫩绿的小芽！看着自己亲手“种”出来的小生命，真的有被治愈到～而且纸张埋在土里会自然降解，完全不会污染环境，适合咱们这种想环保又怕麻烦的懒人党✌️\n\n送给闺蜜当礼物也超有心意，她收到后惊讶得不行，说第一次见这种“会开花”的纸哈哈～上课写笔记、做手账、甚至包装小礼物都行，用完还能变盆栽，太适合学生党啦！\n\n现在每次看到桌上的小绿芽，心情都好到飞起～这种环保又浪漫的小物件，真的每个女生都值得一试！快去冲，保证你会回来感谢我💚",
+      "tags": [
+        "种子纸",
+        "环保好物",
+        "治愈系",
+        "学生党礼物",
+        "创意文具"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "failed",
+      "createdAt": "2026-05-26T09:48:17.640Z",
+      "updatedAt": "2026-05-26T09:49:03.605Z",
+      "items": [
+        {
+          "accountId": "158c0d35-6157-4211-8e11-5096c757b678",
+          "accountName": "小红书账号_2014",
+          "status": "failed",
+          "message": "登录已失效，请在账号管理点「刷新登录」",
+          "noteId": null,
+          "retries": 2
+        },
+        {
+          "accountId": "5df5d8ae-bba8-496d-a79c-c8167391fff3",
+          "accountName": "小红书账号_5841",
+          "status": "failed",
+          "message": "登录已失效，请在账号管理点「刷新登录」",
+          "noteId": null,
+          "retries": 2
+        }
+      ]
+    },
+    "c3b3eacc-4843-42a8-b1a9-69d1664265fc": {
+      "id": "c3b3eacc-4843-42a8-b1a9-69d1664265fc",
+      "title": "🌱种下这张纸，长出整个春天！",
+      "content": "姐妹们！我最近发现了个超治愈的神仙好物——种子纸！！🌸\n\n第一次拿到手的时候我震惊了：这张纸居然能种花？！没错！它不是普通的纸，里面藏着真正的植物种子🌻 用完直接往土里一埋，浇点水，几天后就能冒出嫩绿的小芽，简直太神奇了！\n\n而且它环保到爆！完全可降解，不会给地球增加任何负担🌍 对于我们这种想为环保出份力又不知道从何下手的小白来说，简直太友好了～\n\n我买的是薄荷种子纸，写满笔记后种在阳台小花盆里，现在每天看着小苗苗一天天长大，心情都变好了！办公桌上放一张，同事路过都来问我这是什么神仙宝贝😆\n\n送给闺蜜当礼物也很合适！她收到的时候一脸懵，等我说完怎么用，她当场就种下去了哈哈～现在每天跟我分享她的小苗长多高了🤣\n\n学生党、上班族、手工爱好者通通给我冲！而且价格超良心，一杯奶茶钱就能买好几张，既好玩又有意义，仪式感拉满！\n\n赶紧安排上，让生活多点绿色和惊喜吧～🌿✨",
+      "tags": [
+        "种子纸种草",
+        "环保好物",
+        "治愈系礼物",
+        "阳台种菜",
+        "生活仪式感"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "failed",
+      "createdAt": "2026-05-26T09:51:06.172Z",
+      "updatedAt": "2026-05-26T09:51:59.327Z",
+      "items": [
+        {
+          "accountId": "d5098df8-36fc-4e1e-811c-68024f1457d5",
+          "accountName": "小红书账号_2905",
+          "status": "failed",
+          "message": "未找到图片上传控件，请确认创作者平台页面已加载",
+          "noteId": null,
+          "retries": 2
+        }
+      ]
+    },
+    "3d1c3d32-c7a8-42a5-b645-76d471ca9a76": {
+      "id": "3d1c3d32-c7a8-42a5-b645-76d471ca9a76",
+      "title": "✨ 1｜1！",
+      "content": "姐妹们！今天必须给你们安利这个1！\n\n作为一个1，我真的被它惊艳到了！\n\n1\n\n✅ 1中的佼佼者\n✅ 适合1使用\n✅ 口语化种草风风格，真实体验\n\n用过的人都说好，赶紧冲！",
+      "tags": [
+        "1",
+        "1",
+        "种草",
+        "1",
+        "必买清单"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "failed",
+      "createdAt": "2026-05-26T09:52:32.483Z",
+      "updatedAt": "2026-05-26T09:53:21.841Z",
+      "items": [
+        {
+          "accountId": "d5098df8-36fc-4e1e-811c-68024f1457d5",
+          "accountName": "小红书账号_2905",
+          "status": "failed",
+          "message": "未找到图片上传控件，请确认创作者平台页面已加载",
+          "noteId": null,
+          "retries": 2
+        }
+      ]
+    },
+    "519d7507-a3e6-48c3-9520-a970b4fe248f": {
+      "id": "519d7507-a3e6-48c3-9520-a970b4fe248f",
+      "title": "😱这玩意儿也太好用了吧！冲就完了",
+      "content": "家人们谁懂啊！我最近挖到一个神仙好物，真的后悔没早点发现！！！\n\n先说下我的肤质：混油皮、T区疯狂出油、偶尔冒痘，以前早上化完妆到下午直接油光满面，补妆卡粉到怀疑人生…结果用了这个之后，真的被惊艳到！\n\n✨质地是那种软糯的啫喱状，上脸巨清爽，一抹就化水，吸收巨快！完全不会黏糊糊的，油皮亲妈本妈！\n\n✨用了大概一周吧，最明显的感觉就是出油量直接打对折！早上出门到晚上回家，鼻翼两侧都还是干爽的，痘痘闭口也肉眼可见的平了！\n\n✨而且它一点都不刺激！之前用酸类产品总是泛红刺痛，这个完全温和，每天早晚用都OK，敏感肌姐妹放心冲！\n\n使用方法也简单：洗完脸直接涂，或者混在乳液里都行，懒人福音没跑了～\n\n真心安利给所有被出油、痘痘困扰的姐妹们！性价比也是绝了，一杯奶茶钱就能到手，不冲真的会后悔！！！",
+      "tags": [
+        "油皮救星",
+        "祛痘好物",
+        "控油神器",
+        "平价护肤",
+        "夏日必备"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "failed",
+      "createdAt": "2026-05-26T09:57:32.552Z",
+      "updatedAt": "2026-05-26T09:58:31.819Z",
+      "items": [
+        {
+          "accountId": "d5098df8-36fc-4e1e-811c-68024f1457d5",
+          "accountName": "小红书账号_2905",
+          "status": "failed",
+          "message": "未找到图片上传控件，请确认创作者平台页面已加载",
+          "noteId": null,
+          "retries": 2
+        }
+      ]
+    },
+    "3c3863cf-c9a9-4641-b6d7-e987d785237c": {
+      "id": "3c3863cf-c9a9-4641-b6d7-e987d785237c",
+      "title": "💯 1｜1！",
+      "content": "姐妹们！今天必须给你们安利这个1！\n\n作为一个1，我真的被它惊艳到了！\n\n1\n\n✅ 1中的佼佼者\n✅ 适合1使用\n✅ 口语化种草风风格，真实体验\n\n用过的人都说好，赶紧冲！",
+      "tags": [
+        "1",
+        "1",
+        "种草",
+        "1",
+        "必买清单"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "createdAt": "2026-05-26T10:20:17.599Z",
+      "updatedAt": "2026-05-26T10:21:58.872Z",
+      "items": [
+        {
+          "accountId": "457f85bb-e8ac-4dd3-848e-e7db523109e8",
+          "accountName": "小红书账号_2905",
+          "status": "success",
+          "message": "发布成功（浏览器自动发布）",
+          "noteId": "browser_1779790918790",
+          "retries": 1
+        }
+      ]
+    },
+    "1a6c68dd-593e-495b-a103-33deaee9fb79": {
+      "id": "1a6c68dd-593e-495b-a103-33deaee9fb79",
+      "title": "😱救命！这款神器让我直接封神！",
+      "content": "姐妹们！我挖到宝了！今天必须给你们安利这款1，真的绝绝子！🔥\n\n先说说我的情况：作为一个4，我真的太懂那种无奈了。以前试过好多产品，要么没效果，要么踩雷，钱包都瘦了😭直到遇见它，我的人生直接开挂！\n\n它的卖点2真的牛！一开始我还不信，上手试了两周，效果肉眼可见。闺蜜见了都问是不是换了头，笑死！而且它属于34，用起来贼方便，懒人也能坚持，完全不费劲。\n\n重点来了！肤感巨舒服，吸收快，不油腻，第二天起来皮肤状态好到发光✨价格也很良心，性价比直接拉满。我已经回购三次了，囤货党狂喜！\n\n随便说一句：姐妹们听我的，有预算就冲，早买早享受！别再踩坑了，好东西值得拥有。相信我，试一次你就会回来感谢我！",
+      "tags": [
+        "种草神器",
+        "闭眼入",
+        "4必备",
+        "爱用好物",
+        "不踩雷"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "createdAt": "2026-05-26T10:22:01.613Z",
+      "updatedAt": "2026-05-26T10:22:25.583Z",
+      "items": [
+        {
+          "accountId": "457f85bb-e8ac-4dd3-848e-e7db523109e8",
+          "accountName": "小红书账号_2905",
+          "status": "success",
+          "message": "发布成功（浏览器自动发布）",
+          "noteId": "browser_1779790945544",
+          "retries": 0
+        }
+      ]
+    },
+    "396fbe3b-da93-4d9c-a2db-c64bec398d84": {
+      "id": "396fbe3b-da93-4d9c-a2db-c64bec398d84",
+      "title": "🌱这吊牌能种出花！环保卷王我先冲了",
+      "content": "姐妹们！！我挖到了一个超级宝藏的小众环保好物\n就是这个可降解的种子纸吊牌🌿\n\n事情是这样的🤔\n每次买衣服拆下来的吊牌直接扔掉\n真的觉得好浪费啊啊啊\n但自从我发现了这个 种子纸吊牌 \n瞬间打破了我的认知！\n\n它不仅仅是一个吊牌\n还可以埋进土里 浇水 晒太阳\n过几天就能长出小豆苗或者小花花🌸\n每一片都是满满的惊喜和仪式感\n\n而且它的纸张是环保可降解的\n完全不会污染环境\n可以说是又潮又低碳了\n\n拿来当礼物送人也超有意义\n随便一件衣服配上这个吊牌\n档次直接拉满 对方收到肯定疯狂心动💕\n\n我已经把它安利给身边所有好朋友了\n大家都说 这波环保操作太圈粉了\n现在我们连拆吊牌都充满了期待\n\n如果你也喜欢这种 有爱又有趣 的小细节\n赶紧去搜搜这个宝藏吊牌吧\n绝对不会后悔的！！",
+      "tags": [
+        "环保好物",
+        "种子纸",
+        "可持续生活",
+        "小众设计",
+        "礼物推荐"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "createdAt": "2026-05-26T12:05:21.781Z",
+      "updatedAt": "2026-05-26T12:05:47.866Z",
+      "items": [
+        {
+          "accountId": "457f85bb-e8ac-4dd3-848e-e7db523109e8",
+          "accountName": "小红书账号_2905",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a158c9b00000000070277a7",
+          "retries": 0
+        }
+      ]
+    },
+    "11ad29ce-d3b0-4522-b72c-74eb588ae84e": {
+      "id": "11ad29ce-d3b0-4522-b72c-74eb588ae84e",
+      "title": "🌿服装店老板狂喜！这个吊牌能种花🌸",
+      "content": "姐妹们，我宣布！我找到了今年最炸的服装吊牌——种子纸吊牌！🌱\n\n作为开了三年女装店的老油条，每次看到客人随手扔掉吊牌，我都暗暗心疼。直到上周设计师甩给我这个神仙好物，我直接囤了5000个！\n\n🌟【能发芽的吊牌】🌟\n你绝对想不到，这个看起来普普通通的卡片纸，里面藏着格桑花/薄荷/向日葵的种子！（三个颜色对应不同花语哦～）客人拆下来往土里一埋，浇水就能长出一片小森林！\n\n👉🏻环保党狂喜：100%可降解材料，买衣服还能支援地球🌍\n👉🏻社交货币+1：随手拍个种植过程发小红书，店铺自动带流量～\n👉🏻老客复购率暴涨：上次有个小姐姐为了集齐三种花色，连续买了五件T恤！\n\n🌈【我的实测小tips】\n1️⃣ 拆下来的种子纸先泡水2小时，再埋进湿润土壤\n2️⃣ 放在阳台散光处，每天喷喷水，5天左右就冒芽啦！\n3️⃣ 服装陈列时把吊牌朝外挂，客人路过直接沦陷🥹\n\n真的强烈安利给所有实体店主！成本才几毛钱，但客人拿到手的那种惊喜感，绝对物超所值！我已经把新季货品全换了这款吊牌，连隔壁花店老板都跑来问我进货渠道哈哈哈哈！\n\n#服装店经营 #环保种草 #种子纸吊牌 #实体店流量密码 #可持续时尚",
+      "tags": [
+        "服装店经营",
+        "环保种草",
+        "种子纸吊牌",
+        "实体店流量密码",
+        "可持续时尚"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "createdAt": "2026-05-26T15:12:42.178Z",
+      "updatedAt": "2026-05-26T15:13:07.717Z",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a15b883000000000701390b",
+          "retries": 0
+        }
+      ]
+    },
+    "321eb80c-8991-4575-88a1-69965815e6e2": {
+      "id": "321eb80c-8991-4575-88a1-69965815e6e2",
+      "title": "服装店吊牌别再扔了！种个花吧🌱",
+      "content": "姐妹们！！我真的被这家服装店老板的巧思感动到了😭\n\n本来只是逛街买衣服，随手拆吊牌的时候发现手感不对劲！仔细一看——这吊牌居然是种子纸做的？！老板说只要埋土里浇水就能长出小花花🌼\n\n🌟环保又治愈，谁懂啊！\n现在的服装品牌都在卷设计、卷面料，没想到居然还有人在吊牌上这么用心！种子纸摸起来比普通纸厚实一点，有那种质朴的手感，埋进花盆里两天就发芽了，真的有被绿植治愈到🌿\n\n🌟老板说这种种子纸可以完全降解，不会对环境造成负担～而且吊牌上印着品牌logo和植物小百科，连吊牌绳都是棉麻的，从里到外都在传递环保理念💚\n\n🌟我买完衣服回家就把吊牌泡水、埋土，现在小苗已经冲出土面啦！每次浇水都超有成就感～而且这种润物细无声的环保方式，比那种冷冰冰的“我们使用环保材料”标语打动人心一万倍！\n\n🌟强烈建议所有服装店老板都学起来！一个小小的吊牌就能让顾客感受到品牌的温度和态度，还能顺便收获一波好评和回头客～我已经决定要把这家店码住了，下次还要回购！\n\n姐妹们冲啊！！环保又浪漫的种子吊牌，谁不爱呢🥹",
+      "tags": [
+        "#种子纸吊牌",
+        "#环保小创意",
+        "#服装店灵感",
+        "#绿植治愈",
+        "#可持续生活"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a2.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b2.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c2.png"
+      ],
+      "status": "completed",
+      "createdAt": "2026-05-26T15:36:27.357Z",
+      "updatedAt": "2026-05-26T15:36:52.831Z",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a15be1400000000070284d5",
+          "retries": 0
+        }
+      ]
+    },
+    "bdf70792-1c6b-4cc9-a22b-808b5f933d9d": {
+      "id": "bdf70792-1c6b-4cc9-a22b-808b5f933d9d",
+      "title": "服装店点名要！这个吊牌能种出花🌱",
+      "content": "姐妹们！！最近被一家服装店老板安利了个神仙小物，我直接原地种草🌿\n\n就是这种种子纸吊牌！！看着平平无奇，其实暗藏玄机✨\n\n吊牌用的是环保可降解的种子纸，里面真的藏着花种子🌻你用完衣服标签，别扔！！直接塞土里浇水，过几天就能冒小芽～\n\n咱们店里的衣服用上这个吊牌，客人拿到手都惊呼：哇塞，这也太有仪式感了吧！🎁有的客人还专门拍照发朋友圈，自动帮咱们打广告📸\n\n而且！这个吊牌是a3/b3/c3套装，每个都不一样，植物种类也随机，像开盲盒一样～\n\n最关键是！！环保属性拉满，现在客户都吃这套，你挂上这个吊牌，哪怕衣服贵一点她们也觉得值，因为“这是会发芽的吊牌”啊！\n\n我试了一下，真的能种出来！！小芽超级治愈，放在办公桌或者收银台上，每天都想多看几眼💚\n\n服装店老板们，赶紧冲！这种又能让客人开心、又能自动传播、还环保的神器，别家店用上了你家还没上，那就落后了🔥",
+      "tags": [
+        "种子纸吊牌",
+        "服装店神器",
+        "环保可降解",
+        "种草好物",
+        "服装店营销"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a3.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b3.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c3.png"
+      ],
+      "status": "completed",
+      "createdAt": "2026-05-26T15:36:58.871Z",
+      "updatedAt": "2026-05-26T15:37:24.033Z",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a15be330000000007026b20",
+          "retries": 0
+        }
+      ]
+    },
+    "68dc95ad-c8d4-4169-874b-0009fc96faa9": {
+      "id": "68dc95ad-c8d4-4169-874b-0009fc96faa9",
+      "title": "服装店吊牌别扔！种出小森林🌱",
+      "content": "姐妹们！今天必须给服装店老板们安利一个神仙小物——种子纸吊牌！🌿\n\n事情是这样的，上周进货时发现衣服上挂的吊牌居然能种草？一开始我还以为是噱头，结果拆开泡水埋土里，三天就冒绿芽了！现在办公室窗台排排站着我亲手种的“小苗苗”，同事们路过都要摸一下叶子，超治愈～💚\n\n👉 重点来了：这个吊牌是环保可降解材质，卖给顾客时它是个好看又环保的吊牌，顾客拆下来种土里，就等于给品牌种了一颗“会成长的广告”。顾客一边养草一边念叨你家店名，下次买衣服不首选你家？！\n\n而且！种子纸上面自带logo和品牌名，种出来的小苗上也能隐约看到字迹（亲测），这种“把衣服变成种子”的仪式感，年轻女孩们真的会疯狂拍照发朋友圈，等于免费帮你打广告啊！\n\n最后划重点：成本才几毛钱，但你的吊牌从此不再是一次性垃圾，而是顾客的“绿植盲盒”。服装店老板们，冲就是了！🪴",
+      "tags": [
+        "种子纸吊牌",
+        "服装店营销",
+        "环保可持续",
+        "绿植盲盒",
+        "小众好物"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "createdAt": "2026-05-26T15:44:47.812Z",
+      "updatedAt": "2026-05-26T15:45:13.354Z",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a15c008000000000803303f",
+          "retries": 0
+        }
+      ]
+    },
+    "a653d427-a1a2-43a6-ada4-9af323eaea53": {
+      "id": "a653d427-a1a2-43a6-ada4-9af323eaea53",
+      "title": "👀 第2套·种子纸吊牌｜环保可降解！",
+      "content": "姐妹们！今天必须给你们安利这个种子纸吊牌！\n\n作为一个服装店老板，我真的被它惊艳到了！\n\n环保可降解\n\n✅ 种子纸中的佼佼者\n✅ 适合服装店老板使用\n✅ 口语化种草风风格，真实体验\n\n用过的人都说好，赶紧冲！",
+      "tags": [
+        "种子纸吊牌",
+        "种子纸",
+        "种草",
+        "服装店老板",
+        "必买清单"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a2.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b2.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c2.png"
+      ],
+      "status": "completed",
+      "createdAt": "2026-05-26T15:45:19.436Z",
+      "updatedAt": "2026-05-26T15:45:44.522Z",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a15c0270000000008000b35",
+          "retries": 0
+        }
+      ]
+    },
+    "9daae5de-0660-4217-979a-6137a148c37a": {
+      "id": "9daae5de-0660-4217-979a-6137a148c37a",
+      "title": "服装店老板必看！环保种子纸吊牌🌱",
+      "content": "姐妹们！最近店里换了一款超有爱的吊牌，瞬间被顾客夸爆了！就是这种种子纸吊牌，种在土里真的能发芽哦！🌿\n\n之前一直纠结传统吊牌不环保，还显得没啥创意。这款种子纸吊牌直接解决了我的痛点：纸质是环保可降解的，埋进花盆里，浇浇水，几天就能看到小芽冒出来！顾客拿到衣服都忍不住拍照发朋友圈，无形中帮店里做了一波免费宣传～📸\n\n最戳我的是它的设计感！吊牌本身有留白，可以随手写些暖心小句子，比如“感谢你让地球更美好”，或者简单印上店名和logo，瞬间提升品牌调性。而且种子纸还自带一个小信封包装，拆开时仪式感拉满，拆完还能种花，完全没有浪费！🎁\n\n现在店里每件衣服都配这种吊牌，顾客反馈超好，都说“第一次见到这么有心的吊牌”，还有回头客专门问能不能单买吊牌回家种着玩～如果你也是服装店老板，想悄悄卷死同行，赶紧安排上！环保又浪漫的细节，真的会让品牌瞬间发光✨",
+      "tags": [
+        "种子纸吊牌",
+        "环保创业",
+        "服装店灵感",
+        "创意包装",
+        "可持续时尚"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a3.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b3.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c3.png"
+      ],
+      "status": "completed",
+      "createdAt": "2026-05-26T15:45:50.534Z",
+      "updatedAt": "2026-05-26T15:46:15.647Z",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a15c0470000000007022345",
+          "retries": 0
+        }
+      ]
+    },
+    "7168ebc0-9a78-4062-9d94-797e877ebc44": {
+      "id": "7168ebc0-9a78-4062-9d94-797e877ebc44",
+      "title": "服装店老板必看！这吊牌能种出花🌱",
+      "content": "姐妹们！我挖到宝了！！\n\n最近我们服装店上新，设计师小姐姐突然塞给我一堆“种子纸吊牌”，说这玩意儿不光能挂衣服，还能种出花来🌼\n\n一开始我还半信半疑，直到她当场撕了一张丢进花盆……过了3天，土里真的冒出了嫩芽！！我整个下巴都惊掉了😱\n\n关键是它完全环保可降解！普通的塑料吊牌扔掉要几百年才烂，这个埋土里就变成了花的养料，太治愈了吧～\n\n我们店现在每个新衣服上都拴一张，顾客拿到手都忍不住拍照发朋友圈，还问我“能不能多给两张回去种”😂\n\n而且种子纸表面可以印刷logo和尺码，不影响正常使用，高端又走心。现在进店的客人都会多看两眼这件衣服，感觉衣服瞬间有了生命力！\n\n真诚建议：服装店老板们冲这个吊牌，既能减少塑料污染，又能让顾客记住你的品牌，回头率直接拉满🔥\n\n价格也很良心，300张起订，比普通吊牌贵不了多少，但是体验感翻倍！\n\n我已经打算下次补货再囤500张，给每个春夏新款都配上，让衣服从里到外都是绿色的～🌿",
+      "tags": [
+        "服装店好物",
+        "种子纸吊牌",
+        "环保创业",
+        "小众设计",
+        "可持续时尚"
+      ],
+      "imagePaths": [
+        "/Users/xiaolian/小红书/backend/materials/a/a1.png",
+        "/Users/xiaolian/小红书/backend/materials/b/b1.png",
+        "/Users/xiaolian/小红书/backend/materials/c/c1.png"
+      ],
+      "status": "completed",
+      "createdAt": "2026-05-27T00:58:28.038Z",
+      "updatedAt": "2026-05-27T00:59:01.946Z",
+      "items": [
+        {
+          "accountId": "b02881f2-594d-46a7-9ce5-51fa41691203",
+          "accountName": "主",
+          "status": "success",
+          "message": "发布成功，笔记已进入审核（审核通过后 App 可见）",
+          "noteId": "6a1641d50000000035025e71",
+          "retries": 0
+        }
+      ]
+    }
+  },
+  "schedule": {
+    "enabled": false,
+    "times": [
+      "09:00",
+      "11:00",
+      "18:30"
+    ],
+    "accountIds": [
+      "b02881f2-594d-46a7-9ce5-51fa41691203"
+    ],
+    "productForm": {
+      "productName": "种子纸吊牌",
+      "sellingPoints": "环保可降解",
+      "productType": "种子纸",
+      "targetAudience": "服装店老板",
+      "style": "口语化种草风"
+    },
+    "lastRuns": {
+      "09:00": "2026-05-27"
+    },
+    "usedSetIndexes": [
+      "1"
+    ],
+    "progressDate": "2026-05-27",
+    "lastPublishedDate": ""
+  },
+  "scheduleLogs": [
+    {
+      "id": "ffa6c0a7-5a9d-47cd-8649-25416ff2e0a0",
+      "slot": "09:00",
+      "status": "success",
+      "setIndex": "1",
+      "title": "服装店老板必看！这吊牌能种出花🌱",
+      "message": "发布成功（1 个账号，含 a+b+c 三图），笔记已进入审核",
+      "noteIds": [
+        "6a1641d50000000035025e71"
+      ],
+      "taskId": "7168ebc0-9a78-4062-9d94-797e877ebc44",
+      "createdAt": "2026-05-27T00:59:02.056Z"
+    },
+    {
+      "id": "306f100b-3178-49f2-b833-9aed437efcf3",
+      "slot": "18:00",
+      "status": "success",
+      "setIndex": "3",
+      "title": "服装店老板必看！环保种子纸吊牌🌱",
+      "message": "发布成功（1 个账号，含 a+b+c 三图），笔记已进入审核",
+      "noteIds": [
+        "6a15c0470000000007022345"
+      ],
+      "taskId": "9daae5de-0660-4217-979a-6137a148c37a",
+      "createdAt": "2026-05-26T15:46:16.546Z"
+    },
+    {
+      "id": "4257088d-1a9c-401f-a6f0-629c71cfc1fd",
+      "slot": "12:00",
+      "status": "success",
+      "setIndex": "2",
+      "title": "👀 第2套·种子纸吊牌｜环保可降解！",
+      "message": "发布成功（1 个账号，含 a+b+c 三图），笔记已进入审核",
+      "noteIds": [
+        "6a15c0270000000008000b35"
+      ],
+      "taskId": "a653d427-a1a2-43a6-ada4-9af323eaea53",
+      "createdAt": "2026-05-26T15:45:45.452Z"
+    },
+    {
+      "id": "3b4c472a-cd3c-42fc-8c23-9715bbc4f081",
+      "slot": "08:00",
+      "status": "success",
+      "setIndex": "1",
+      "title": "服装店吊牌别扔！种出小森林🌱",
+      "message": "发布成功（1 个账号，含 a+b+c 三图），笔记已进入审核",
+      "noteIds": [
+        "6a15c008000000000803303f"
+      ],
+      "taskId": "68dc95ad-c8d4-4169-874b-0009fc96faa9",
+      "createdAt": "2026-05-26T15:45:13.828Z"
+    },
+    {
+      "id": "c7934012-2f22-43f6-8b6a-f414c7bc27dc",
+      "slot": "23:33",
+      "status": "success",
+      "setIndex": "3",
+      "title": "服装店点名要！这个吊牌能种出花🌱",
+      "message": "发布成功（1 个账号，含 a+b+c 三图），笔记已进入审核",
+      "noteIds": [
+        "6a15be330000000007026b20"
+      ],
+      "taskId": "bdf70792-1c6b-4cc9-a22b-808b5f933d9d",
+      "createdAt": "2026-05-26T15:37:24.888Z"
+    },
+    {
+      "id": "49979094-c8b6-449c-9541-65da71d47ff1",
+      "slot": "23:32",
+      "status": "success",
+      "setIndex": "2",
+      "title": "服装店吊牌别再扔了！种个花吧🌱",
+      "message": "发布成功（1 个账号，含 a+b+c 三图），笔记已进入审核",
+      "noteIds": [
+        "6a15be1400000000070284d5"
+      ],
+      "taskId": "321eb80c-8991-4575-88a1-69965815e6e2",
+      "createdAt": "2026-05-26T15:36:53.374Z"
+    },
+    {
+      "id": "8c2509ae-b080-4d00-ad94-278c88b50237",
+      "slot": "23:13",
+      "status": "success",
+      "setIndex": "1",
+      "title": "🌿服装店老板狂喜！这个吊牌能种花🌸",
+      "message": "发布成功（1 个账号），笔记已进入审核，App 通过后可见",
+      "noteIds": [
+        "6a15b883000000000701390b"
+      ],
+      "taskId": "11ad29ce-d3b0-4522-b72c-74eb588ae84e",
+      "createdAt": "2026-05-26T15:13:08.194Z"
+    }
+  ]
+}
