@@ -7,7 +7,6 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-const { initDb } = require('./services/db');
 const { config } = require('./config/env');
 const { isServerless, UPLOADS_DIR, MATERIALS_DIR, ensureStorageDirs } = require('./config/paths');
 const logger = require('./utils/logger');
@@ -34,11 +33,51 @@ const app = express();
 const PORT = config.port;
 
 let appReady = false;
+let initPromise = null;
+
+function asMiddleware(mod) {
+  return mod && typeof mod === 'object' && mod.default ? mod.default : mod;
+}
+
+function safeUse(routePath, mod) {
+  const mw = asMiddleware(mod);
+  if (typeof mw === 'function') {
+    app.use(routePath, mw);
+    return;
+  }
+  logger.warn(`⚠️ 路由未挂载：${routePath}（导出类型=${typeof mw}）`);
+}
+
+function getInitDb() {
+  const mod = require('./services/db');
+  const queue = [mod];
+  const seen = new Set();
+  while (queue.length) {
+    const cur = queue.shift();
+    if (!cur || seen.has(cur)) continue;
+    seen.add(cur);
+    if (typeof cur === 'function') return cur;
+    if (typeof cur?.initDb === 'function') return cur.initDb;
+    if (typeof cur === 'object') {
+      for (const k of Object.keys(cur)) queue.push(cur[k]);
+    }
+  }
+  return null;
+}
 
 // 中间件
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true }));
+
+app.use(async (req, res, next) => {
+  try {
+    await ensureInitialized();
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
 
 // 静态文件 - 上传的图片
 app.use('/uploads', express.static(UPLOADS_DIR));
@@ -52,18 +91,18 @@ app.use('/materials', (req, res, next) => {
 });
 
 // API 路由
-app.use('/api/auth', authRoutes);
-app.use('/api/accounts/qr', accountsQrRoutes);
-app.use('/api/accounts/cookie', accountsCookieRoutes);
-app.use('/api/accounts', accountRoutes);
-app.use('/api/upload', uploadRoutes);
-app.use('/api/ai', aiRoutes);
-app.use('/api/publish', publishRoutes);
-app.use('/api/records', recordRoutes);
-app.use('/api/settings', settingsRoutes);
-app.use('/api/materials', materialsRoutes);
-app.use('/api/image-gen', imageGenRoutes);
-app.use('/api/schedule', scheduleRoutes);
+safeUse('/api/auth', authRoutes);
+safeUse('/api/accounts/qr', accountsQrRoutes);
+safeUse('/api/accounts/cookie', accountsCookieRoutes);
+safeUse('/api/accounts', accountRoutes);
+safeUse('/api/upload', uploadRoutes);
+safeUse('/api/ai', aiRoutes);
+safeUse('/api/publish', publishRoutes);
+safeUse('/api/records', recordRoutes);
+safeUse('/api/settings', settingsRoutes);
+safeUse('/api/materials', materialsRoutes);
+safeUse('/api/image-gen', imageGenRoutes);
+safeUse('/api/schedule', scheduleRoutes);
 
 // 健康检查
 app.get('/api/health', (req, res) => {
@@ -95,27 +134,40 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: err.message || '服务器内部错误' });
 });
 
-async function createApp() {
-  if (appReady) return app;
+async function ensureInitialized() {
+  if (appReady) return;
+  if (!initPromise) {
+    initPromise = (async () => {
+      ensureStorageDirs();
+      const initDb = getInitDb();
+      if (typeof initDb !== 'function') {
+        const mod = require('./services/db');
+        throw new Error(`数据库模块加载失败：initDb 不可用（exports: ${Object.keys(mod || {}).join(',') || 'none'}）`);
+      }
+      await initDb();
+      initMaterialsDir();
 
-  ensureStorageDirs();
-  await initDb();
-  initMaterialsDir();
+      if (!isServerless()) {
+        const pw = getPlaywrightStatus();
+        if (pw.configured) {
+          logger.info(`🌐 Playwright Chromium: ${pw.executablePath}`);
+        } else {
+          logger.warn(`⚠️ Playwright 未安装，请执行: ${pw.installHint}`);
+        }
+        startKeepAliveScheduler();
+        startScheduleScheduler();
+      } else {
+        logger.info('☁️ Vercel Serverless 模式：定时发布 / 浏览器发帖 / Playwright 不可用');
+      }
 
-  if (!isServerless()) {
-    const pw = getPlaywrightStatus();
-    if (pw.configured) {
-      logger.info(`🌐 Playwright Chromium: ${pw.executablePath}`);
-    } else {
-      logger.warn(`⚠️ Playwright 未安装，请执行: ${pw.installHint}`);
-    }
-    startKeepAliveScheduler();
-    startScheduleScheduler();
-  } else {
-    logger.info('☁️ Vercel Serverless 模式：定时发布 / 浏览器发帖 / Playwright 不可用');
+      appReady = true;
+    })();
   }
+  await initPromise;
+}
 
-  appReady = true;
+async function createApp() {
+  await ensureInitialized();
   return app;
 }
 
@@ -136,4 +188,7 @@ if (require.main === module) {
   });
 }
 
-module.exports = { app, createApp, startServer };
+module.exports = app;
+module.exports.app = app;
+module.exports.createApp = createApp;
+module.exports.startServer = startServer;

@@ -30,6 +30,8 @@ request.interceptors.response.use(
       localStorage.removeItem('token');
       router.push('/login');
       ElMessage.error('登录已过期，请重新登录');
+    } else if (error.response?.status === 413) {
+      ElMessage.error('图片太大，请减少一次保存数量或先压缩后再试（线上单次建议 1 张）');
     } else {
       ElMessage.error(message);
     }

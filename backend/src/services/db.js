@@ -1,7 +1,6 @@
 /**
  * 数据库服务 - 基于 lowdb 的本地 JSON 文件存储
  */
-const { JSONFilePreset } = require('lowdb/node');
 const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
@@ -51,15 +50,29 @@ const defaultData = {
 };
 
 let db = null;
+const isServerless = Boolean(process.env.VERCEL || process.env.VERCEL_ENV);
+
+function createMemoryDb(initial) {
+  return {
+    data: JSON.parse(JSON.stringify(initial)),
+    async write() {},
+  };
+}
 
 /**
  * 初始化数据库
  */
 async function initDb() {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
+  if (isServerless) {
+    db = createMemoryDb(defaultData);
+  } else {
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+    // 仅在非 Serverless 环境加载 lowdb，避免打包器裁剪导致模块异常
+    const { JSONFilePreset } = require('lowdb/node');
+    db = await JSONFilePreset(DB_PATH, defaultData);
   }
-  db = await JSONFilePreset(DB_PATH, defaultData);
 
   // 首次启动创建默认管理员账号 admin / admin123
   if (!db.data.user) {

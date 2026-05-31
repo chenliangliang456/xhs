@@ -79,6 +79,104 @@ IMAGE_GEN_API_KEY=你的API密钥</pre>
       style="margin-bottom: 16px"
     />
 
+    <div class="card-section gen-options-panel">
+      <h3 class="section-title">出图选项</h3>
+      <p class="field-hint" style="margin-bottom: 16px">
+        颜色/形状/风格作用于批量 A 图；选「随机」时多张图会自动黑白混色、形状抽卡、风格混搭
+      </p>
+
+      <el-form label-width="90px">
+        <el-form-item label="颜色款">
+          <div class="chip-group">
+            <el-button
+              v-for="c in COLOR_OPTIONS"
+              :key="c.id"
+              size="small"
+              :type="genOptions.colorKey === c.id ? 'primary' : 'default'"
+              @click="genOptions.colorKey = c.id"
+            >
+              {{ c.label }}
+            </el-button>
+          </div>
+        </el-form-item>
+
+        <el-form-item label="形状分类">
+          <div class="chip-group">
+            <el-button
+              size="small"
+              :type="genOptions.shapeCategory === 'regular' ? 'primary' : 'default'"
+              @click="onShapeCategoryChange('regular')"
+            >
+              常规
+            </el-button>
+            <el-button
+              size="small"
+              :type="genOptions.shapeCategory === 'irregular' ? 'primary' : 'default'"
+              @click="onShapeCategoryChange('irregular')"
+            >
+              异形
+            </el-button>
+          </div>
+          <div class="chip-group">
+            <el-button
+              v-for="s in currentShapeOptions"
+              :key="s.id"
+              size="small"
+              :type="genOptions.shapeKey === s.id ? 'primary' : 'default'"
+              @click="genOptions.shapeKey = s.id"
+            >
+              {{ s.label }}
+            </el-button>
+          </div>
+          <p class="field-hint">
+            常规：长方形、正方形；异形：圆形、五角星、梯形、不规则；随机为形状抽卡
+          </p>
+        </el-form-item>
+
+        <el-form-item label="出图风格">
+          <div class="chip-group">
+            <el-button
+              v-for="st in STYLE_OPTIONS"
+              :key="st.id"
+              size="small"
+              :type="genOptions.styleKey === st.id ? 'primary' : 'default'"
+              @click="genOptions.styleKey = st.id"
+            >
+              {{ st.label }}
+            </el-button>
+          </div>
+        </el-form-item>
+
+        <el-form-item label="文字">
+          <div class="chip-group">
+            <span class="chip-group-label">颜色</span>
+            <el-button
+              v-for="tc in TEXT_COLOR_OPTIONS"
+              :key="tc.id"
+              size="small"
+              :type="genOptions.textColorKey === tc.id ? 'primary' : 'default'"
+              @click="genOptions.textColorKey = tc.id"
+            >
+              {{ tc.label }}
+            </el-button>
+          </div>
+          <div class="chip-group" style="margin-top: 8px">
+            <span class="chip-group-label">字体</span>
+            <el-button
+              v-for="f in FONT_OPTIONS"
+              :key="f.id"
+              size="small"
+              :type="genOptions.fontKey === f.id ? 'primary' : 'default'"
+              @click="genOptions.fontKey = f.id"
+            >
+              {{ f.label }}
+            </el-button>
+          </div>
+          <p class="field-hint">作用于 C 图叠加的产品分类、尺寸、产品信息文字</p>
+        </el-form-item>
+      </el-form>
+    </div>
+
     <div class="card-section">
       <el-form label-width="90px" @submit.prevent="handleSubmit">
         <el-form-item label="图片描述" required>
@@ -163,11 +261,11 @@ IMAGE_GEN_API_KEY=你的API密钥</pre>
       <div class="section-title">ABC 套装生成</div>
       <el-alert type="info" :closable="false" show-icon style="margin-bottom: 16px">
         <template v-if="materialAnchor">
-          已从<strong>素材库 A 图</strong>加载锚点，填写产品信息后生成
-          <strong>B（五宫格）</strong> 和 <strong>C（产品信息图）</strong>。
+          已从<strong>素材库 A 图</strong>加载锚点，填写产品信息后一键生成
+          <strong>B（宫格）</strong> + <strong>C（产品信息图）</strong>，完成后<strong>自动调用 DeepSeek 生成种草文案</strong>。
         </template>
         <template v-else>
-          在下方勾选锚点 A 后批量生成：B 为<strong>同一产品</strong>的五宫格（4 格多角度 + 1 格种植/方法），C 为<strong>同款主图 + 产品信息</strong>。
+          勾选锚点 A 后一键生成 B（2～5 宫格）+ C（原图叠加产品信息），完成后<strong>自动调用 DeepSeek</strong> 生成好物推荐文案（标题、正文、标签、多 emoji）。也可点击套装 A 图手动刷新文案。
         </template>
       </el-alert>
 
@@ -179,16 +277,14 @@ IMAGE_GEN_API_KEY=你的API密钥</pre>
             素材库 · {{ anchorImage.filename || anchorImage.path }}
           </span>
           <span v-else>第 {{ anchorImage.id }} 张 · {{ anchorImage.prompt?.slice(0, 40) }}...</span>
-          <el-button
-            size="small"
-            type="primary"
-            plain
-            :loading="zipping"
-            style="margin-left: auto"
-            @click="downloadZip"
-          >
-            下载锚点 ZIP
-          </el-button>
+          <div class="anchor-actions">
+            <el-button size="small" plain @click="downloadSingleImage(anchorImage)">
+              下载锚点图
+            </el-button>
+            <el-button size="small" type="primary" plain :loading="zipping" @click="downloadZip">
+              下载锚点 ZIP
+            </el-button>
+          </div>
         </div>
       </div>
       <p v-else class="anchor-hint">← 请先在下方勾选一张或多张图片作为锚点 A</p>
@@ -197,28 +293,151 @@ IMAGE_GEN_API_KEY=你的API密钥</pre>
       </p>
 
       <el-form label-width="100px" class="abc-form">
-        <el-form-item label="产品尺寸">
-          <el-input
-            v-model="abcForm.productDimensions"
-            placeholder="例：长 25cm × 宽 18cm × 高 8cm / 500ml"
-          />
+        <el-form-item label="产品分类" required>
+          <div class="chip-group">
+            <el-button
+              v-for="cat in PRODUCT_CATEGORIES"
+              :key="cat.id"
+              size="small"
+              :type="abcForm.categoryKey === cat.id ? 'primary' : 'default'"
+              @click="selectCategory(cat.id)"
+            >
+              {{ cat.label }}
+            </el-button>
+            <el-button
+              size="small"
+              :type="abcForm.categoryKey === 'custom' ? 'primary' : 'default'"
+              @click="selectCategory('custom')"
+            >
+              自定义
+            </el-button>
+          </div>
+          <el-select
+            v-if="abcForm.categoryKey === 'custom'"
+            v-model="abcForm.categoryCustom"
+            class="history-select"
+            filterable
+            allow-create
+            default-first-option
+            clearable
+            placeholder="输入或选择历史自定义分类"
+            @change="onCategoryCustomPick"
+            @blur="persistAbcHistory"
+          >
+            <el-option v-for="item in categoryHistory" :key="item" :label="item" :value="item" />
+          </el-select>
         </el-form-item>
+
+        <el-form-item label="产品尺寸">
+          <div v-if="abcForm.categoryKey !== 'custom'" class="chip-group">
+            <el-button
+              size="small"
+              :type="abcForm.dimensionsMode === 'preset' ? 'primary' : 'default'"
+              @click="selectDimensionsPreset"
+            >
+              {{ currentCategoryDefaultDimensions }}
+            </el-button>
+            <el-button
+              size="small"
+              :type="abcForm.dimensionsMode === 'custom' ? 'primary' : 'default'"
+              @click="selectDimensionsCustom"
+            >
+              自定义
+            </el-button>
+          </div>
+          <el-select
+            v-if="abcForm.dimensionsMode === 'custom' || abcForm.categoryKey === 'custom'"
+            v-model="abcForm.productDimensions"
+            class="history-select"
+            filterable
+            allow-create
+            default-first-option
+            clearable
+            placeholder="输入或选择历史尺寸，例：长 25cm × 宽 18cm"
+            @change="onDimensionsPick"
+            @blur="persistAbcHistory"
+          >
+            <el-option v-for="item in dimensionsHistory" :key="item" :label="item" :value="item" />
+          </el-select>
+          <div v-else class="field-hint">当前尺寸：{{ abcForm.productDimensions }}</div>
+        </el-form-item>
+
         <el-form-item label="产品信息">
           <el-input
             v-model="abcForm.productInfo"
             type="textarea"
             :rows="3"
-            placeholder="例：材质、成分、卖点、适用场景、规格参数等"
+            :placeholder="productInfoPlaceholder"
+            @blur="onProductInfoBlur"
           />
+          <p class="field-hint seed-paper-hint">
+            所有分类共用产品信息：产品名种子纸，成分 {{ SEED_PAPER_COMPOSITION }}，特性环保可降解、只内嵌入种植植物种子（可修改）
+          </p>
+          <p class="field-hint">产品尺寸会写入 C 图（第三章）展示，可点「自定义」修改</p>
         </el-form-item>
-        <el-form-item label="种植/方法">
+        <el-form-item label="B 图宫格">
+          <div class="chip-group">
+            <el-button
+              v-for="opt in B_GRID_OPTIONS"
+              :key="opt.count"
+              size="small"
+              :type="abcForm.bGridMode === 'preset' && abcForm.bGridCount === opt.count ? 'primary' : 'default'"
+              @click="selectBGridPreset(opt.count)"
+            >
+              {{ opt.label }}
+            </el-button>
+            <el-button
+              size="small"
+              :type="abcForm.bGridMode === 'random' ? 'primary' : 'default'"
+              @click="selectBGridRandom"
+            >
+              随机
+            </el-button>
+            <el-button
+              size="small"
+              :type="abcForm.bGridMode === 'custom' ? 'primary' : 'default'"
+              @click="selectBGridCustom"
+            >
+              自定义
+            </el-button>
+          </div>
+          <div v-if="abcForm.bGridMode === 'custom'" class="custom-grid-row">
+            <el-input-number
+              v-model="abcForm.bGridCustomCount"
+              :min="2"
+              :max="9"
+              controls-position="right"
+              style="width: 120px"
+            />
+            <span class="field-hint inline">格数（2～9）</span>
+            <el-input
+              v-model="abcForm.bGridCustomLayout"
+              placeholder="可选：排版描述，如「上2下3」或「2行3列」"
+              style="flex: 1; min-width: 200px"
+            />
+          </div>
+          <div class="field-hint">{{ bGridPreviewHint }}</div>
+        </el-form-item>
+
+        <el-form-item label="种植方法">
+          <div class="planting-toggle-row">
+            <el-checkbox v-model="abcForm.enablePlantingMethod">
+              在 B 图最后一格生成真实感种植/使用场景
+            </el-checkbox>
+          </div>
           <el-input
+            v-if="abcForm.enablePlantingMethod"
             v-model="abcForm.plantingMethod"
             type="textarea"
             :rows="2"
-            placeholder="填写后仅占用 B 图第 5 格（右下角），其余 4 格为 A 图同款产品的不同角度"
+            placeholder="可选：补充种植步骤说明，如「湿润土壤埋入种子纸，每日喷水」"
+            style="margin-top: 8px"
           />
+          <p v-if="abcForm.enablePlantingMethod" class="field-hint">
+            将占用 B 图第 {{ currentGridLayout.plantingCell }} 格，其余格仍为 A 图同款产品多角度
+          </p>
         </el-form-item>
+
         <el-form-item label="C 图尺寸">
           <el-select v-model="abcForm.cSize" style="width: 200px">
             <el-option label="3:4（竖屏，推荐）" value="3:4" />
@@ -234,7 +453,7 @@ IMAGE_GEN_API_KEY=你的API密钥</pre>
             :disabled="!batchAnchorList.length"
             @click="handleGenerateAbc"
           >
-            {{ generatingAbc ? '正在生成 B + C...' : '以锚点 A 生成 B + C' }}
+            {{ generatingAbc ? '正在生成 B + C + 文案...' : '生成全套（B+C+种草文案）' }}
           </el-button>
           <el-button
             v-else
@@ -243,7 +462,7 @@ IMAGE_GEN_API_KEY=你的API密钥</pre>
             :disabled="!batchAnchorList.length"
             @click="handleGenerateAbc"
           >
-            {{ generatingAbc ? `批量生成中 (${abcBatchProgress})...` : `批量生成 B+C（${batchAnchorList.length} 套）` }}
+            {{ generatingAbc ? `批量生成中 (${abcBatchProgress})...` : `批量生成全套（${batchAnchorList.length} 套）` }}
           </el-button>
           <el-button
             v-if="generatingAbc"
@@ -256,44 +475,112 @@ IMAGE_GEN_API_KEY=你的API密钥</pre>
         </el-form-item>
       </el-form>
 
-      <!-- 五宫格示意 -->
-      <div class="grid5-demo">
-        <span class="demo-label">B 图 · 五宫格（4 格 A 多角度 + 1 格种植/方法）</span>
-        <div class="grid5-layout">
-          <div class="grid5-cell"><span>1</span><small>正面</small></div>
-          <div class="grid5-cell"><span>2</span><small>侧面</small></div>
-          <div class="grid5-cell"><span>3</span><small>俯拍</small></div>
-          <div class="grid5-cell"><span>4</span><small>特写</small></div>
-          <div class="grid5-cell method"><span>5</span><small>种植/方法</small></div>
+      <!-- 宫格示意 -->
+      <div class="grid-demo">
+        <span class="demo-label">
+          B 图 · {{ currentGridLayout.label }}
+          <template v-if="abcForm.enablePlantingMethod">（第 {{ currentGridLayout.plantingCell }} 格为种植场景）</template>
+        </span>
+        <div class="grid-layout" :class="currentGridLayout.gridClass">
+          <div
+            v-for="cell in currentGridLayout.cells"
+            :key="cell.n"
+            class="grid5-cell"
+            :class="{ method: abcForm.enablePlantingMethod && cell.n === currentGridLayout.plantingCell }"
+          >
+            <span>{{ cell.n }}</span>
+            <small>
+              {{ abcForm.enablePlantingMethod && cell.n === currentGridLayout.plantingCell ? '种植' : cell.short }}
+            </small>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- ABC 套装结果 -->
-    <div v-for="set in abcSets" :key="set.setIndex" class="card-section abc-set-card">
+    <!-- ABC 套装结果（按分类分组） -->
+    <template v-for="group in groupedAbcSets" :key="group.category">
+      <div class="card-section abc-group-header">
+        <div class="section-title">{{ group.category }}</div>
+        <el-tag type="info" effect="plain">{{ group.sets.length }} 套</el-tag>
+      </div>
+      <div v-for="set in group.sets" :key="`${group.category}-${set.setIndex}`" class="card-section abc-set-card">
       <div class="set-header">
-        <span class="section-title">套装 #{{ set.setIndex }}</span>
-        <el-button type="primary" size="small" :loading="savingSetId === set.setIndex" @click="saveAbcSet(set)">
-          保存为 a{{ set.setIndex }} / b{{ set.setIndex }} / c{{ set.setIndex }}
-        </el-button>
+        <div class="set-header-left">
+          <span class="section-title">套装 #{{ set.setIndex }}</span>
+          <el-tag size="small" effect="plain">{{ set.productCategory || group.category }}</el-tag>
+          <el-tag v-if="set.bGridCount || set.bGridMode === 'random'" size="small" type="warning" effect="plain">
+            {{ bGridLabel(set.bGridCount || abcForm.bGridCount, set.enablePlantingMethod, set.bGridMode) }}
+          </el-tag>
+        </div>
+        <div class="set-header-actions">
+          <el-button
+            v-if="set.anchor && set.b && set.c"
+            type="success"
+            size="small"
+            plain
+            :loading="copyingSetId === set.setIndex"
+            @click="generateViralCopyForSet(set)"
+          >
+            {{ set.viralCopy?.title ? '重新生成文案' : '生成种草文案' }}
+          </el-button>
+          <el-button type="primary" size="small" :loading="savingSetId === set.setIndex" @click="saveAbcSet(set)">
+            保存为 a{{ set.setIndex }} / b{{ set.setIndex }} / c{{ set.setIndex }}
+          </el-button>
+        </div>
       </div>
       <div class="abc-row">
-        <div class="abc-slot">
+        <div class="abc-slot anchor-slot" @click="onSetAnchorClick(set)">
           <span class="slot-tag a">A · 锚点</span>
-          <el-image :src="set.anchor.dataUrl" fit="cover" class="slot-img" :preview-src-list="[set.anchor.dataUrl]" />
+          <el-image :src="set.anchor.dataUrl" fit="cover" class="slot-img" :preview-src-list="[set.anchor.dataUrl]" @click.stop />
+          <el-button size="small" text type="primary" @click.stop="downloadSingleImage(set.anchor)">下载</el-button>
+          <p v-if="set.b && set.c" class="slot-hint">点击卡片 → DeepSeek 种草文案</p>
         </div>
         <div class="abc-slot">
-          <span class="slot-tag b">B · 五宫格</span>
+          <span class="slot-tag b">{{ bGridLabel(set.bGridCount || abcForm.bGridCount, set.enablePlantingMethod, set.bGridMode) }}</span>
           <el-image v-if="set.b" :src="set.b.dataUrl" fit="cover" class="slot-img" :preview-src-list="[set.b.dataUrl]" />
           <div v-else class="slot-loading"><el-icon class="is-loading"><Loading /></el-icon></div>
+          <el-button v-if="set.b" size="small" text type="primary" @click="downloadSingleImage(set.b)">下载</el-button>
         </div>
         <div class="abc-slot">
-          <span class="slot-tag c">C · 产品信息</span>
+          <span class="slot-tag c">C · 原图信息</span>
           <el-image v-if="set.c" :src="set.c.dataUrl" fit="cover" class="slot-img" :preview-src-list="[set.c.dataUrl]" />
           <div v-else class="slot-loading"><el-icon class="is-loading"><Loading /></el-icon></div>
+          <el-button v-if="set.c" size="small" text type="primary" @click="downloadSingleImage(set.c)">下载</el-button>
+        </div>
+      </div>
+
+      <div v-if="copyingSetId === set.setIndex" class="viral-copy-block viral-copy-loading">
+        <el-icon class="is-loading"><Loading /></el-icon>
+        <span>DeepSeek 正在分析 A/B/C 配图，生成好物推荐文案（标题 · 正文 · 标签 · 多 emoji）...</span>
+      </div>
+      <div v-else-if="set.viralCopy?.title || set.viralCopy?.content" class="viral-copy-block">
+        <div class="viral-copy-head">
+          <span class="section-title">热门种草文案</span>
+          <el-tag v-if="set.viralCopy.mock" size="small" type="warning" effect="plain">模板模式</el-tag>
+          <el-button size="small" text type="primary" @click="goPublishWithCopy(set)">去发布</el-button>
+        </div>
+        <div class="viral-copy-row">
+          <span class="viral-label">标题</span>
+          <p class="viral-text">{{ set.viralCopy.title }}</p>
+          <el-button text type="primary" size="small" @click="copyText(set.viralCopy.title)">复制</el-button>
+        </div>
+        <div class="viral-copy-row block">
+          <span class="viral-label">正文</span>
+          <el-input v-model="set.viralCopy.content" type="textarea" :rows="8" />
+          <el-button text type="primary" size="small" @click="copyText(set.viralCopy.content)">复制正文</el-button>
+        </div>
+        <div class="viral-copy-row">
+          <span class="viral-label">标签</span>
+          <div class="viral-tags">
+            <el-tag v-for="(t, i) in set.viralCopy.tags" :key="i" size="small" style="margin: 3px">{{ t }}</el-tag>
+          </div>
+          <el-button text type="primary" size="small" @click="copyText((set.viralCopy.tags || []).join(' '))">
+            复制标签
+          </el-button>
         </div>
       </div>
     </div>
+    </template>
 
     <div v-if="hasDownloadableImages" class="card-section">
       <div class="section-title">
@@ -362,6 +649,15 @@ IMAGE_GEN_API_KEY=你的API密钥</pre>
               >
                 <el-icon><ZoomIn /></el-icon>
               </el-button>
+              <el-button
+                class="preview-btn"
+                circle
+                size="small"
+                title="下载单张"
+                @click.stop="downloadSingleImage(img)"
+              >
+                <el-icon><Download /></el-icon>
+              </el-button>
             </div>
           </div>
           <img :src="img.dataUrl" alt="" class="image-thumb" loading="lazy" draggable="false" />
@@ -369,6 +665,7 @@ IMAGE_GEN_API_KEY=你的API密钥</pre>
             <span>{{ img.role ? `${img.role.toUpperCase()} · ` : '' }}第 {{ img.id }} 张</span>
             <span v-if="img.setIndex">套装 #{{ img.setIndex }}</span>
           </div>
+          <p v-if="img.genTags" class="image-gen-tags">{{ img.genTags }}</p>
         </div>
       </div>
     </div>
@@ -395,15 +692,34 @@ import { ref, reactive, computed, onMounted, nextTick } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 import { ElMessage } from 'element-plus';
-import { Loading, Setting, Refresh, ZoomIn, ArrowUp, ArrowDown } from '@element-plus/icons-vue';
+import { Loading, Setting, Refresh, ZoomIn, Download, ArrowUp, ArrowDown } from '@element-plus/icons-vue';
 import JSZip from 'jszip';
-import { imageGenApi, settingsApi } from '@/api';
+import { imageGenApi, settingsApi, aiApi } from '@/api';
 import PageHero from '@/components/PageHero.vue';
 import WorkflowGuide from '@/components/WorkflowGuide.vue';
 import { PLACEHOLDERS, BATCH_IMAGE_WORKFLOW } from '@/constants/placeholders';
+import { PRODUCT_CATEGORIES, getCategoryById, resolveProductCategory, applyCategoryDefaults, syncCategoryFromProductInfo, SEED_PAPER_COMPOSITION, UNIFIED_SEED_PAPER_INFO } from '@/constants/productCategories';
+import {
+  COLOR_OPTIONS,
+  REGULAR_SHAPES,
+  IRREGULAR_SHAPES,
+  STYLE_OPTIONS,
+  TEXT_COLOR_OPTIONS,
+  FONT_OPTIONS,
+  resolveGenModifiers,
+  buildFullPrompt,
+  formatGenTags,
+} from '@/constants/genOptions';
+import { B_GRID_OPTIONS, B_GRID_MODES, getGridLayout, bGridLabel, resolveBGridCount } from '@/constants/bGridLayouts';
 import { useBatchImageGenStore } from '@/stores/batchImageGen';
+import {
+  loadCategoryHistory,
+  loadDimensionsHistory,
+  rememberAbcFormInputs,
+} from '@/utils/abcFormHistory';
 import { urlToDataUrl } from '@/utils/imageDataUrl';
 import { assetUrl } from '@/utils/assetUrl';
+import { compressDataUrl } from '@/utils/compressDataUrl';
 
 const router = useRouter();
 const route = useRoute();
@@ -411,6 +727,7 @@ const genStore = useBatchImageGenStore();
 
 const {
   form,
+  genOptions,
   abcForm,
   generatedImages,
   abcSets,
@@ -430,20 +747,187 @@ const abcBatchProgress = ref('');
 const zipping = ref(false);
 const saving = ref(false);
 const savingSetId = ref(null);
+const copyingSetId = ref(null);
 const apiConfigured = ref(false);
 const imageGenSettings = ref(null);
 const hasRestoredWork = ref(false);
 const maxCount = ref(200);
 const submitChunk = ref(40);
-const pollHint = ref({ maxAttempts: 60, intervalMs: 3000, fastAttempts: 8, fastIntervalMs: 2000 });
+const pollHint = ref({
+  maxAttempts: 80,
+  intervalMs: 1800,
+  fastAttempts: 24,
+  fastIntervalMs: 900,
+  pollConcurrency: 22,
+  submitParallel: 6,
+  abcSetConcurrency: 3,
+});
 const apiConfigExpanded = ref(false);
 const previewVisible = ref(false);
 const previewUrl = ref('');
+const categoryHistory = ref(loadCategoryHistory());
+const dimensionsHistory = ref(loadDimensionsHistory());
+
+const currentCategoryDefaultDimensions = computed(() => {
+  const cat = getCategoryById(abcForm.value.categoryKey);
+  return cat?.defaultDimensions || '';
+});
+
+const previewGridCount = computed(() => {
+  const f = abcForm.value;
+  if (f.bGridMode === B_GRID_MODES.random) return 5;
+  if (f.bGridMode === B_GRID_MODES.custom) return f.bGridCustomCount || 5;
+  return f.bGridCount;
+});
+
+const currentGridLayout = computed(() =>
+  getGridLayout(previewGridCount.value, abcForm.value.bGridCustomLayout)
+);
+
+const bGridPreviewHint = computed(() => {
+  const f = abcForm.value;
+  if (f.bGridMode === B_GRID_MODES.random) {
+    return '当前：随机模式，每套在 2～5 宫格中自动抽取';
+  }
+  if (f.bGridMode === B_GRID_MODES.custom) {
+    const layout = getGridLayout(f.bGridCustomCount, f.bGridCustomLayout);
+    return `当前：自定义 ${layout.label}（${layout.layoutDesc}）`;
+  }
+  const layout = getGridLayout(f.bGridCount);
+  return `当前：${layout.label}（${layout.layoutDesc}）`;
+});
+
+const groupedAbcSets = computed(() => {
+  const sorted = [...abcSets.value].sort(
+    (a, b) => Number(a.setIndex) - Number(b.setIndex) || String(a.productCategory).localeCompare(String(b.productCategory))
+  );
+  const groups = new Map();
+  for (const set of sorted) {
+    const key = set.productCategory || resolveProductCategory(abcForm.value) || '未分类';
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(set);
+  }
+  return [...groups.entries()].map(([category, sets]) => ({ category, sets }));
+});
+
+const currentShapeOptions = computed(() => {
+  const randomOpt = { id: 'random', label: '随机抽卡' };
+  if (genOptions.value.shapeCategory === 'irregular') {
+    return [...IRREGULAR_SHAPES, randomOpt];
+  }
+  return [...REGULAR_SHAPES, randomOpt];
+});
+
+function onShapeCategoryChange(category) {
+  genOptions.value.shapeCategory = category;
+  const ids = currentShapeOptions.value.map((s) => s.id);
+  if (!ids.includes(genOptions.value.shapeKey)) {
+    genOptions.value.shapeKey = ids[0];
+  }
+}
+
+function buildPromptsForChunk(basePrompt, startId, count) {
+  return Array.from({ length: count }, (_, i) => {
+    const slotIndex = startId + i - 1;
+    const mods = resolveGenModifiers(genOptions.value, slotIndex, Date.now());
+    return buildFullPrompt(basePrompt, mods);
+  });
+}
+
+function modifiersForTask(task) {
+  const slotIndex = (task?.id ?? 1) - 1;
+  return resolveGenModifiers(genOptions.value, slotIndex, task?.seed ?? 0);
+}
+
+const productInfoPlaceholder = computed(() => UNIFIED_SEED_PAPER_INFO.replace(/\n/g, '；'));
+
+function selectCategory(key) {
+  abcForm.value.categoryKey = key;
+  abcForm.value.productInfo = UNIFIED_SEED_PAPER_INFO;
+  if (key === 'custom') {
+    abcForm.value.dimensionsMode = 'custom';
+    if (!abcForm.value.productDimensions && dimensionsHistory.value[0]) {
+      abcForm.value.productDimensions = dimensionsHistory.value[0];
+    }
+    return;
+  }
+  applyCategoryDefaults(abcForm.value, key, { fillInfo: false });
+}
+
+function selectBGridPreset(count) {
+  abcForm.value.bGridMode = B_GRID_MODES.preset;
+  abcForm.value.bGridCount = count;
+}
+
+function selectBGridRandom() {
+  abcForm.value.bGridMode = B_GRID_MODES.random;
+}
+
+function selectBGridCustom() {
+  abcForm.value.bGridMode = B_GRID_MODES.custom;
+  if (!abcForm.value.bGridCustomCount) {
+    abcForm.value.bGridCustomCount = abcForm.value.bGridCount || 5;
+  }
+}
+
+function onProductInfoBlur() {
+  syncCategoryFromProductInfo(abcForm.value);
+}
+
+function selectDimensionsPreset() {
+  abcForm.value.dimensionsMode = 'preset';
+  const cat = getCategoryById(abcForm.value.categoryKey);
+  if (cat?.defaultDimensions) {
+    abcForm.value.productDimensions = cat.defaultDimensions;
+  }
+}
+
+function selectDimensionsCustom() {
+  abcForm.value.dimensionsMode = 'custom';
+  if (!abcForm.value.productDimensions && dimensionsHistory.value[0]) {
+    abcForm.value.productDimensions = dimensionsHistory.value[0];
+  }
+}
+
+function onCategoryCustomPick() {
+  abcForm.value.dimensionsMode = 'custom';
+  persistAbcHistory();
+}
+
+function onDimensionsPick() {
+  abcForm.value.dimensionsMode = 'custom';
+  persistAbcHistory();
+}
+
+function persistAbcHistory() {
+  const saved = rememberAbcFormInputs(abcForm.value);
+  categoryHistory.value = saved.categories;
+  dimensionsHistory.value = saved.dimensions;
+}
+
+function validateAbcForm() {
+  syncCategoryFromProductInfo(abcForm.value);
+  const category = resolveProductCategory(abcForm.value);
+  if (!category) {
+    ElMessage.warning('请选择产品分类，或填写自定义分类');
+    return false;
+  }
+  if (!abcForm.value.productDimensions.trim()) {
+    ElMessage.warning('请填写产品尺寸（将显示在 C 图）');
+    return false;
+  }
+  if (!abcForm.value.productInfo.trim()) {
+    ElMessage.warning('请填写产品信息');
+    return false;
+  }
+  return true;
+}
 
 const progress = reactive({ done: 0, total: 0, failed: 0 });
 
-const POLL_CONCURRENCY = 10;
-const SUBMIT_PARALLEL = 2;
+const POLL_CONCURRENCY = computed(() => pollHint.value.pollConcurrency || 22);
+const SUBMIT_PARALLEL = computed(() => pollHint.value.submitParallel || 6);
+const ABC_SET_CONCURRENCY = computed(() => pollHint.value.abcSetConcurrency || 3);
 
 /** 批量生成的锚点候选图（未标记 B/C 角色） */
 const anchorCandidateImages = computed(() =>
@@ -512,7 +996,8 @@ const progressText = computed(() => {
 
 const workflowActiveStep = computed(() => {
   if (abcSets.value.some((s) => s.b && s.c)) return 4;
-  if (batchAnchorList.value.length && (abcForm.value.productDimensions || abcForm.value.productInfo)) {
+  if (batchAnchorList.value.length && resolveProductCategory(abcForm.value) &&
+    (abcForm.value.productDimensions || abcForm.value.productInfo)) {
     return generatingAbc.value ? 3 : 2;
   }
   if (generatedImages.value.length) return 2;
@@ -539,9 +1024,13 @@ async function refreshApiStatus() {
     if (data.pollHint) pollHint.value = { ...pollHint.value, ...data.pollHint };
     apiConfigured.value = data.apiConfigured === true;
     if (!apiConfigured.value) apiConfigExpanded.value = true;
-  } catch {
+  } catch (err) {
     apiConfigured.value = false;
     apiConfigExpanded.value = true;
+    const msg = err?.response?.data?.message || err?.message || '';
+    if (/未登录|Token|401/i.test(msg)) {
+      ElMessage.warning('登录已过期，请重新登录后再生图');
+    }
   }
   try {
     const res = await settingsApi.get();
@@ -582,6 +1071,24 @@ async function loadMaterialAnchorFromRoute() {
 }
 
 onMounted(async () => {
+  categoryHistory.value = loadCategoryHistory();
+  dimensionsHistory.value = loadDimensionsHistory();
+  if (!abcForm.value.categoryKey) {
+    abcForm.value.categoryKey = 'clothing-tag';
+  }
+  if (!abcForm.value.bGridMode) {
+    abcForm.value.bGridMode = 'preset';
+  }
+  if (!abcForm.value.productInfo?.trim()) {
+    abcForm.value.productInfo = UNIFIED_SEED_PAPER_INFO;
+  }
+  if (abcForm.value.categoryKey !== 'custom') {
+    applyCategoryDefaults(abcForm.value, abcForm.value.categoryKey, { fillInfo: false });
+  }
+  if (!abcForm.value.dimensionsMode) {
+    abcForm.value.dimensionsMode = abcForm.value.categoryKey === 'custom' ? 'custom' : 'preset';
+  }
+  syncCategoryFromProductInfo(abcForm.value);
   if (generatedImages.value.length || materialAnchor.value || abcSets.value.length) {
     hasRestoredWork.value = true;
   }
@@ -625,10 +1132,31 @@ function clearAnchorSelection() {
   selectedAnchorId.value = null;
 }
 
-function resolveSetIndex(anchor) {
-  if (anchor.index && /^\d+$/.test(String(anchor.index))) return String(anchor.index);
-  if (typeof anchor.id === 'number') return String(anchor.id);
-  return Date.now().toString().slice(-4);
+function allocateSetIndices(anchors) {
+  const used = new Set(
+    [
+      ...abcSets.value.map((s) => String(s.setIndex)),
+      ...generatedImages.value.filter((i) => i.setIndex).map((i) => String(i.setIndex)),
+    ].filter(Boolean)
+  );
+  return anchors.map((anchor) => {
+    if (anchor.index && /^\d+$/.test(String(anchor.index))) {
+      const idx = String(anchor.index);
+      if (!used.has(idx)) {
+        used.add(idx);
+        return { anchor, setIndex: idx };
+      }
+    }
+    let n = 1;
+    while (used.has(String(n))) n += 1;
+    const setIndex = String(n);
+    used.add(setIndex);
+    return { anchor, setIndex };
+  });
+}
+
+function categoryFolderName(name) {
+  return String(name || '未分类').replace(/[/\\:*?"<>|]/g, '_').slice(0, 40);
 }
 
 function resetAll() {
@@ -644,9 +1172,32 @@ function sleep(ms) {
 }
 
 function pollDelay(attempt) {
-  return attempt < pollHint.value.fastAttempts
-    ? pollHint.value.fastIntervalMs
-    : pollHint.value.intervalMs;
+  const { fastAttempts, fastIntervalMs, intervalMs } = pollHint.value;
+  if (attempt < fastAttempts) return fastIntervalMs;
+  const extra = attempt - fastAttempts;
+  return Math.min(intervalMs + extra * 150, 3500);
+}
+
+async function resolveCompletedImage(data, task, pollBatchId) {
+  const img = data.image;
+  if (!img) throw new Error('无图片数据');
+  if (img.dataUrl) return img;
+  if (img.imageUrl) {
+    try {
+      const dataUrl = await urlToDataUrl(img.imageUrl);
+      return { ...img, dataUrl };
+    } catch {
+      const retry = await imageGenApi.poll({
+        ...task,
+        batchId: pollBatchId,
+        role: task.role,
+        lazyImage: false,
+      });
+      if (retry.status === 'completed' && retry.image?.dataUrl) return retry.image;
+      throw new Error('图片下载失败');
+    }
+  }
+  return img;
 }
 
 async function runPool(items, limit, worker) {
@@ -662,8 +1213,15 @@ async function runPool(items, limit, worker) {
   return results;
 }
 
-async function submitChunkRequest(prompt, size, startId, n, batchId) {
-  const data = await imageGenApi.generate({ prompt, count: n, size, startId, batchId });
+async function submitChunkRequest(prompt, size, startId, n, batchId, prompts) {
+  const data = await imageGenApi.generate({
+    prompt,
+    prompts,
+    count: n,
+    size,
+    startId,
+    batchId,
+  });
   if (!data.success && data.message) throw new Error(data.message);
   return data;
 }
@@ -679,15 +1237,24 @@ async function submitAll(prompt, total, size) {
   const [first, ...rest] = chunks;
 
   if (first) {
-    const firstData = await submitChunkRequest(prompt, size, first.startId, first.n, null);
+    const firstPrompts = buildPromptsForChunk(prompt, first.startId, first.n);
+    const firstData = await submitChunkRequest(
+      prompt,
+      size,
+      first.startId,
+      first.n,
+      null,
+      firstPrompts
+    );
     batchId = firstData.batchId;
     tasks.push(...(firstData.tasks || []));
     statusMessage.value = `正在提交任务（${tasks.length}/${total}）...`;
   }
 
   if (rest.length) {
-    const restLists = await runPool(rest, SUBMIT_PARALLEL, async ({ startId, n }) => {
-      const data = await submitChunkRequest(prompt, size, startId, n, batchId);
+    const restLists = await runPool(rest, SUBMIT_PARALLEL.value, async ({ startId, n }) => {
+      const chunkPrompts = buildPromptsForChunk(prompt, startId, n);
+      const data = await submitChunkRequest(prompt, size, startId, n, batchId, chunkPrompts);
       return data.tasks || [];
     });
     tasks.push(...restLists.flat());
@@ -703,9 +1270,15 @@ async function pollOneTask(task, batchId, sessionId = null) {
     if (sessionId != null && isCancelled(sessionId)) {
       throw new Error('CANCELLED');
     }
-    const data = await imageGenApi.poll({ ...task, batchId: pollBatchId, role: task.role });
+    const data = await imageGenApi.poll({
+      ...task,
+      batchId: pollBatchId,
+      role: task.role,
+      lazyImage: true,
+    });
     if (data.status === 'completed') {
-      return { ...data.image, role: task.role, setIndex: task.setIndex, label: task.label };
+      const image = await resolveCompletedImage(data, task, pollBatchId);
+      return { ...image, role: task.role, setIndex: task.setIndex, label: task.label };
     }
     if (data.status === 'failed') throw new Error(data.message || '任务失败');
     await sleep(pollDelay(i));
@@ -758,9 +1331,11 @@ function collectDownloadEntries() {
   }
 
   for (const set of abcSets.value) {
-    const prefix = `abc_sets/set_${set.setIndex}`;
+    const catFolder = categoryFolderName(set.productCategory);
+    const prefix = `abc_sets/${catFolder}/set_${set.setIndex}`;
+    const gridTag = set.bGridCount ? `_b${set.bGridCount}` : '';
     if (set.anchor?.dataUrl) add(`${prefix}/a_anchor.png`, set.anchor.dataUrl);
-    if (set.b?.dataUrl) add(`${prefix}/b_grid.png`, set.b.dataUrl);
+    if (set.b?.dataUrl) add(`${prefix}/b_grid${gridTag}.png`, set.b.dataUrl);
     if (set.c?.dataUrl) add(`${prefix}/c_product.png`, set.c.dataUrl);
   }
 
@@ -795,6 +1370,31 @@ function downloadBlob(blob, name) {
   a.click();
   a.remove();
   URL.revokeObjectURL(url);
+}
+
+function singleImageFileName(img) {
+  const parsed = parseDataUrl(img?.dataUrl);
+  const ext = parsed ? extFromMime(parsed.mime) : 'png';
+  const parts = ['AI'];
+  if (img?.role) parts.push(String(img.role).toUpperCase());
+  if (img?.setIndex) parts.push(`set${img.setIndex}`);
+  if (img?.source === 'material' || img?.filename || img?.path) {
+    const label = (img.filename || img.path || 'material').replace(/[/\\]/g, '_').replace(/\.[^.]+$/, '');
+    parts.push(label);
+  } else {
+    parts.push(String(img?.id ?? 'img'));
+  }
+  return `${parts.join('_')}.${ext}`;
+}
+
+function downloadSingleImage(img) {
+  const parsed = parseDataUrl(img?.dataUrl);
+  if (!parsed) {
+    ElMessage.error('图片数据无效');
+    return;
+  }
+  const bytes = Uint8Array.from(atob(parsed.base64), (c) => c.charCodeAt(0));
+  downloadBlob(new Blob([bytes], { type: parsed.mime }), singleImageFileName(img));
 }
 
 async function downloadZip() {
@@ -846,12 +1446,18 @@ async function handleSubmit() {
     statusMessage.value = `已提交 ${tasks.length} 个任务，正在出图...`;
 
     const batchImages = [];
-    await runPool(tasks, POLL_CONCURRENCY, async (task) => {
+    await runPool(tasks, POLL_CONCURRENCY.value, async (task) => {
       if (isCancelled(sessionId)) return;
       try {
         const image = await pollOneTask(task, batchId, sessionId);
         if (isCancelled(sessionId)) return;
-        batchImages.push({ ...image, prompt: promptUsed });
+        const mods = modifiersForTask(task);
+        batchImages.push({
+          ...image,
+          prompt: task.prompt || promptUsed,
+          genTags: formatGenTags(mods),
+          genModifiers: mods,
+        });
         generatedImages.value = [...batchImages].sort((a, b) => a.id - b.id);
       } catch (err) {
         if (err.message === 'CANCELLED') return;
@@ -887,8 +1493,17 @@ async function handleSubmit() {
 }
 
 async function generateAbcForAnchor(anchor, setIndex, sessionId) {
+  const productCategory = resolveProductCategory(abcForm.value);
+  const resolvedGridCount = resolveBGridCount(abcForm.value, setIndex, anchor.seed);
+  const mods = resolveGenModifiers(genOptions.value, Number(setIndex) || 0, anchor.seed || 0);
   const setEntry = reactive({
     setIndex,
+    productCategory,
+    categoryKey: abcForm.value.categoryKey,
+    bGridMode: abcForm.value.bGridMode,
+    bGridCount: resolvedGridCount,
+    enablePlantingMethod: abcForm.value.enablePlantingMethod,
+    genTags: formatGenTags(mods),
     anchor: { ...anchor, role: 'a' },
     b: null,
     c: null,
@@ -898,36 +1513,51 @@ async function generateAbcForAnchor(anchor, setIndex, sessionId) {
   anchor.role = 'a';
   anchor.setIndex = setIndex;
 
-  statusMessage.value = `套装 #${setIndex}：正在提交 B（五宫格）+ C...`;
+  const gridLabel = getGridLayout(resolvedGridCount, abcForm.value.bGridCustomLayout).label;
+  statusMessage.value = `套装 #${setIndex}（${productCategory}）：正在提交 B（${gridLabel}）+ C...`;
 
   const res = await imageGenApi.generateAbcSet({
-    anchorPrompt: anchor.prompt || form.value.prompt,
+    anchorPrompt: buildFullPrompt(anchor.prompt || form.value.prompt, mods),
     anchorDataUrl: anchor.dataUrl,
+    productCategory,
     productDimensions: abcForm.value.productDimensions,
     productInfo: abcForm.value.productInfo,
+    bGridMode: abcForm.value.bGridMode,
+    bGridCount: abcForm.value.bGridCount,
+    bGridCustomCount: abcForm.value.bGridCustomCount,
+    bGridCustomLayout: abcForm.value.bGridCustomLayout,
+    enablePlantingMethod: abcForm.value.enablePlantingMethod,
     plantingMethod: abcForm.value.plantingMethod,
+    stylePrompt: mods.stylePrompt,
+    textColorKey: genOptions.value.textColorKey,
+    fontKey: genOptions.value.fontKey,
     size: form.value.size,
     cSize: abcForm.value.cSize,
     setIndex,
+    seed: anchor.seed,
   });
 
   if (isCancelled(sessionId)) return setEntry;
   if (!res.success) throw new Error(res.message || '提交失败');
 
   const tasks = res.tasks || [];
-  statusMessage.value = `套装 #${setIndex}：正在生成 B + C...`;
+  statusMessage.value = `套装 #${setIndex}：正在并行生成 B + C...`;
 
-  for (const task of tasks) {
-    if (isCancelled(sessionId)) break;
+  await runPool(tasks, tasks.length, async (task) => {
+    if (isCancelled(sessionId)) return;
     try {
       const image = await pollOneTask({ ...task, batchId: res.batchId }, res.batchId, sessionId);
-      if (task.role === 'b') setEntry.b = image;
-      else if (task.role === 'c') setEntry.c = image;
+      if (task.role === 'b') setEntry.b = { ...image, genTags: formatGenTags(mods) };
+      else if (task.role === 'c') setEntry.c = { ...image, genTags: formatGenTags(mods) };
       generatedImages.value.push(image);
     } catch (err) {
-      if (err.message === 'CANCELLED') break;
+      if (err.message === 'CANCELLED') return;
       ElMessage.error(`套装 #${setIndex} ${task.label || task.role} 失败：${err.message}`);
     }
+  });
+
+  if (!isCancelled(sessionId) && setEntry.b && setEntry.c) {
+    await generateViralCopyForSet(setEntry, { silent: true });
   }
 
   return setEntry;
@@ -939,45 +1569,49 @@ async function handleGenerateAbc() {
     ElMessage.warning('请先勾选一张或多张图片作为锚点 A');
     return;
   }
-  if (!abcForm.value.productDimensions.trim() && !abcForm.value.productInfo.trim()) {
-    ElMessage.warning('请填写产品尺寸或产品信息');
-    return;
-  }
+  if (!validateAbcForm()) return;
+  persistAbcHistory();
 
   const sessionId = ++genSessionId.value;
   generatingAbc.value = true;
-  let okCount = 0;
+  const anchorJobs = allocateSetIndices(anchors);
 
   try {
-    for (let i = 0; i < anchors.length; i++) {
-      if (isCancelled(sessionId)) break;
-      const anchor = anchors[i];
-      const setIndex = resolveSetIndex(anchor);
-      abcBatchProgress.value = `${i + 1}/${anchors.length}`;
+    const results = await runPool(anchorJobs, ABC_SET_CONCURRENCY.value, async ({ anchor, setIndex }, i) => {
+      if (isCancelled(sessionId)) return null;
+      abcBatchProgress.value = `${i + 1}/${anchorJobs.length}`;
       statusMessage.value =
-        anchors.length > 1
-          ? `批量 B+C：第 ${i + 1}/${anchors.length} 套（锚点第 ${anchor.id} 张）...`
+        anchorJobs.length > 1
+          ? `批量 B+C：第 ${i + 1}/${anchorJobs.length} 套（锚点第 ${anchor.id} 张）...`
           : '正在生成 B + C...';
 
       try {
-        const setEntry = await generateAbcForAnchor(anchor, setIndex, sessionId);
-        if (setEntry.b && setEntry.c) okCount += 1;
+        return await generateAbcForAnchor(anchor, setIndex, sessionId);
       } catch (err) {
-        if (err.message === 'CANCELLED' || isCancelled(sessionId)) break;
+        if (err.message === 'CANCELLED' || isCancelled(sessionId)) return null;
         ElMessage.error(`锚点第 ${anchor.id} 张：${err.message || '生成失败'}`);
+        return null;
       }
-    }
+    });
 
     if (isCancelled(sessionId)) {
       statusMessage.value = '已取消生成';
       return;
     }
 
+    const okCount = results.filter((r) => r?.b && r?.c).length;
+
     if (anchors.length === 1) {
       const last = abcSets.value[0];
       if (last?.b && last?.c) {
-        statusMessage.value = `套装 #${last.setIndex} 生成完成`;
-        ElMessage.success('B 五宫格 + C 产品信息图 生成完成');
+        statusMessage.value = last.viralCopy?.title
+          ? `套装 #${last.setIndex} 全套完成（含种草文案）`
+          : `套装 #${last.setIndex} 图片已完成，文案生成中或失败请点 A 图重试`;
+        ElMessage.success(
+          last.viralCopy?.title
+            ? `${bGridLabel(last.bGridCount || abcForm.value.bGridCount, last.enablePlantingMethod, last.bGridMode)} + C + 种草文案已完成`
+            : `${bGridLabel(last.bGridCount || abcForm.value.bGridCount, last.enablePlantingMethod, last.bGridMode)} + C 已完成`
+        );
       } else {
         ElMessage.warning('部分生成失败，请重试');
       }
@@ -994,20 +1628,111 @@ async function handleGenerateAbc() {
   }
 }
 
+function copyText(text) {
+  if (!text) return;
+  navigator.clipboard.writeText(text);
+  ElMessage.success('已复制');
+}
+
+async function generateViralCopyForSet(set, opts = {}) {
+  const { silent = false } = opts;
+  if (!set.anchor?.dataUrl || !set.b?.dataUrl || !set.c?.dataUrl) {
+    if (!silent) ElMessage.warning('请等待套装 ABC 全部生成完成');
+    return;
+  }
+  if (copyingSetId.value === set.setIndex) return;
+  copyingSetId.value = set.setIndex;
+  statusMessage.value = `套装 #${set.setIndex}：DeepSeek 正在分析配图并生成种草文案...`;
+  try {
+    const [aUrl, bUrl, cUrl] = await Promise.all([
+      compressDataUrl(set.anchor.dataUrl),
+      compressDataUrl(set.b.dataUrl),
+      compressDataUrl(set.c.dataUrl),
+    ]);
+    const styleOpt = STYLE_OPTIONS.find((s) => s.id === genOptions.value.styleKey);
+
+    const res = await aiApi.generateAbcCopy({
+      setIndex: set.setIndex,
+      productCategory: set.productCategory || resolveProductCategory(abcForm.value),
+      productInfo: abcForm.value.productInfo,
+      productDimensions: abcForm.value.productDimensions,
+      genTags: set.genTags || formatGenTags(resolveGenModifiers(genOptions.value, Number(set.setIndex) || 0, 0)),
+      designPrompt: set.anchor.prompt || form.value.prompt,
+      styleKey: styleOpt?.label || '口语化种草风',
+      imageDataUrls: [aUrl, bUrl, cUrl],
+    });
+
+    set.viralCopy = {
+      title: res.data?.title || '',
+      content: res.data?.content || '',
+      tags: Array.isArray(res.data?.tags) ? [...res.data.tags] : [],
+      mock: !!res.meta?.mock,
+    };
+
+    if (res.meta?.mock) {
+      if (!silent) ElMessage.warning(res.message || '已使用模板文案');
+    } else if (!silent) {
+      ElMessage.success('DeepSeek 种草文案已生成（标题+正文+标签，表情包已加强）');
+    }
+    statusMessage.value = `套装 #${set.setIndex} 种草文案已就绪`;
+  } catch {
+    // interceptor
+  } finally {
+    copyingSetId.value = null;
+  }
+}
+
+/** 点击套装 A 图：一键生成/刷新 DeepSeek 种草文案 */
+function onSetAnchorClick(set) {
+  if (!set.anchor || !set.b || !set.c) {
+    ElMessage.info('请等待 B、C 图生成完成');
+    return;
+  }
+  generateViralCopyForSet(set);
+}
+
+function goPublishWithCopy(set) {
+  if (!set.viralCopy?.title) {
+    ElMessage.warning('请先生成种草文案');
+    return;
+  }
+  sessionStorage.setItem(
+    'xhs-publish-draft',
+    JSON.stringify({
+      title: set.viralCopy.title,
+      content: set.viralCopy.content,
+      tags: set.viralCopy.tags,
+      setIndex: set.setIndex,
+    })
+  );
+  router.push('/publish');
+}
+
 async function saveAbcSet(set) {
   if (!set.anchor || !set.b || !set.c) {
     ElMessage.warning('套装未完整，请等待 B/C 生成完成');
     return;
   }
   savingSetId.value = set.setIndex;
+  const setIndex = set.setIndex;
+  const slots = [
+    { img: set.anchor, folder: 'a' },
+    { img: set.b, folder: 'b' },
+    { img: set.c, folder: 'c' },
+  ];
   try {
-    const res = await imageGenApi.saveAbcSet({
-      anchor: set.anchor,
-      bImage: set.b,
-      cImage: set.c,
-      setIndex: set.setIndex,
-    });
-    ElMessage.success(res.message || 'ABC 套装已保存');
+    for (let i = 0; i < slots.length; i++) {
+      const { img, folder } = slots[i];
+      statusMessage.value = `正在保存 ${folder.toUpperCase()}（${i + 1}/3）...`;
+      const dataUrl = await compressDataUrl(img.dataUrl);
+      await imageGenApi.saveOneToMaterials({
+        dataUrl,
+        folder,
+        index: setIndex,
+      });
+    }
+    ElMessage.success(`ABC 套装已保存为 a${setIndex} / b${setIndex} / c${setIndex}`);
+    statusMessage.value = `套装 #${setIndex} 已写入素材库`;
   } catch {
     // handled by interceptor
   } finally {
@@ -1018,17 +1743,26 @@ async function saveAbcSet(set) {
 async function saveToMaterials() {
   if (!generatedImages.value.length) return;
   saving.value = true;
+  const list = generatedImages.value;
+  let ok = 0;
   try {
-    const res = await imageGenApi.saveToMaterials(
-      generatedImages.value.map((img) => ({
-        dataUrl: img.dataUrl,
+    for (let i = 0; i < list.length; i++) {
+      const img = list[i];
+      statusMessage.value = `正在保存到素材库（${i + 1}/${list.length}）...`;
+      const dataUrl = await compressDataUrl(img.dataUrl);
+      await imageGenApi.saveOneToMaterials({
+        dataUrl,
         folder: img.role || saveFolder.value,
         index: img.setIndex || img.id,
-      }))
-    );
-    ElMessage.success(res.message || '已保存到素材库');
+      });
+      ok += 1;
+    }
+    ElMessage.success(`已保存 ${ok} 张到素材库`);
+    statusMessage.value = `已保存 ${ok} 张到素材库`;
   } catch {
-    // error handled by interceptor
+    if (ok > 0) {
+      ElMessage.warning(`部分成功：已保存 ${ok}/${list.length} 张`);
+    }
   } finally {
     saving.value = false;
   }
@@ -1157,6 +1891,12 @@ function goPublish() {
   align-self: flex-start;
 }
 
+.anchor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .anchor-hint.batch-count {
   color: var(--xhs-primary);
   font-weight: 600;
@@ -1172,10 +1912,84 @@ function goPublish() {
   max-width: 640px;
 }
 
-.grid5-demo {
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.chip-group-label {
+  font-size: 12px;
+  color: var(--xhs-text-secondary);
+  min-width: 32px;
+}
+
+.history-select {
+  width: 100%;
+}
+
+.seed-paper-hint {
+  margin-top: 8px;
+  color: #059669;
+}
+
+.grid-demo {
   margin-top: 20px;
   padding-top: 16px;
   border-top: 1px dashed var(--xhs-border);
+}
+
+.grid-layout {
+  display: grid;
+  gap: 6px;
+  max-width: 280px;
+}
+
+.grid-layout.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-layout.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-layout.grid-4 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-layout.grid-5 {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.grid-layout.grid-5 .grid5-cell:nth-child(1) { grid-column: 1 / 4; }
+.grid-layout.grid-5 .grid5-cell:nth-child(2) { grid-column: 4 / 7; }
+.grid-layout.grid-5 .grid5-cell:nth-child(3) { grid-column: 1 / 3; }
+.grid-layout.grid-5 .grid5-cell:nth-child(4) { grid-column: 3 / 5; }
+.grid-layout.grid-5 .grid5-cell:nth-child(5) { grid-column: 5 / 7; }
+
+.abc-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px !important;
+  padding-bottom: 8px !important;
+  margin-bottom: 0 !important;
+  background: var(--xhs-bg);
+  border-bottom: none !important;
+}
+
+.set-header-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.planting-toggle-row {
+  line-height: 1.6;
 }
 
 .demo-label {
@@ -1207,9 +2021,9 @@ function goPublish() {
 }
 
 .grid5-cell.method {
-  background: rgba(255, 152, 0, 0.12);
-  border-color: rgba(255, 152, 0, 0.45);
-  color: #e65100;
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.45);
+  color: #059669;
 }
 
 .grid5-layout {
@@ -1226,6 +2040,66 @@ function goPublish() {
 .grid5-cell:nth-child(4) { grid-column: 3 / 5; }
 .grid5-cell:nth-child(5) { grid-column: 5 / 7; }
 
+.set-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.set-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.viral-copy-block {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--xhs-border);
+}
+
+.viral-copy-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.viral-copy-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px 12px;
+  margin-bottom: 14px;
+}
+
+.viral-copy-row.block {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.viral-label {
+  min-width: 40px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--xhs-text-secondary);
+}
+
+.viral-text {
+  flex: 1;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.viral-tags {
+  flex: 1;
+}
+
 .abc-set-card .set-header {
   display: flex;
   justify-content: space-between;
@@ -1239,8 +2113,43 @@ function goPublish() {
   gap: 16px;
 }
 
-.abc-slot {
-  text-align: center;
+.custom-grid-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.field-hint.inline {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.abc-slot.anchor-slot {
+  cursor: pointer;
+  border-radius: 16px;
+  padding: 8px 4px;
+  transition: background 0.15s ease;
+}
+
+.abc-slot.anchor-slot:hover {
+  background: rgba(255, 36, 66, 0.06);
+}
+
+.slot-hint {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: var(--xhs-text-secondary);
+  line-height: 1.4;
+}
+
+.viral-copy-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--xhs-text-secondary);
+  font-size: 13px;
 }
 
 .slot-tag {
@@ -1379,6 +2288,18 @@ function goPublish() {
   display: block;
   object-fit: cover;
   user-select: none;
+}
+
+.gen-options-panel {
+  background: linear-gradient(135deg, rgba(255, 36, 66, 0.02), #fff);
+}
+
+.image-gen-tags {
+  margin: 0;
+  padding: 0 12px 10px;
+  font-size: 11px;
+  color: var(--xhs-text-secondary);
+  line-height: 1.4;
 }
 
 .image-meta {

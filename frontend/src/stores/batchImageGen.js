@@ -5,9 +5,25 @@ const STORAGE_KEY = 'xhs-batch-image-gen';
 
 export const useBatchImageGenStore = defineStore('batchImageGen', () => {
   const form = ref({ prompt: '', count: 4, size: '1:1' });
+  const genOptions = ref({
+    colorKey: 'white',
+    shapeCategory: 'regular',
+    shapeKey: 'rectangle',
+    styleKey: 'luxury',
+    textColorKey: 'black',
+    fontKey: 'sans',
+  });
   const abcForm = ref({
-    productDimensions: '',
+    categoryKey: 'clothing-tag',
+    categoryCustom: '',
+    dimensionsMode: 'preset',
+    productDimensions: '5cm × 8cm',
     productInfo: '',
+    bGridMode: 'preset',
+    bGridCount: 5,
+    bGridCustomCount: 5,
+    bGridCustomLayout: '',
+    enablePlantingMethod: false,
     plantingMethod: '',
     cSize: '3:4',
   });
@@ -26,6 +42,7 @@ export const useBatchImageGenStore = defineStore('batchImageGen', () => {
         STORAGE_KEY,
         JSON.stringify({
           form: form.value,
+          genOptions: genOptions.value,
           abcForm: abcForm.value,
           generatedImages: generatedImages.value,
           abcSets: abcSets.value,
@@ -48,8 +65,35 @@ export const useBatchImageGenStore = defineStore('batchImageGen', () => {
       const raw = sessionStorage.getItem(STORAGE_KEY);
       if (!raw) return;
       const data = JSON.parse(raw);
-      if (data.form) form.value = data.form;
-      if (data.abcForm) abcForm.value = data.abcForm;
+      if (data.form) form.value = { prompt: '', count: 4, size: '1:1', ...data.form };
+      if (data.genOptions) {
+        genOptions.value = {
+          colorKey: 'white',
+          shapeCategory: 'regular',
+          shapeKey: 'rectangle',
+          styleKey: 'luxury',
+          textColorKey: 'black',
+          fontKey: 'sans',
+          ...data.genOptions,
+        };
+      }
+      if (data.abcForm) {
+        abcForm.value = {
+          categoryKey: 'clothing-tag',
+          categoryCustom: '',
+          dimensionsMode: 'preset',
+          productDimensions: '5cm × 8cm',
+          productInfo: '',
+          bGridMode: 'preset',
+          bGridCount: 5,
+          bGridCustomCount: 5,
+          bGridCustomLayout: '',
+          enablePlantingMethod: false,
+          plantingMethod: '',
+          cSize: '3:4',
+          ...data.abcForm,
+        };
+      }
       if (Array.isArray(data.generatedImages)) generatedImages.value = data.generatedImages;
       if (Array.isArray(data.abcSets)) abcSets.value = data.abcSets;
       selectedAnchorId.value = data.selectedAnchorId ?? null;
@@ -92,13 +136,14 @@ export const useBatchImageGenStore = defineStore('batchImageGen', () => {
   }
 
   watch(
-    [form, abcForm, generatedImages, abcSets, selectedAnchorId, selectedAnchorIds, materialAnchor, lastBatchId, statusMessage, saveFolder],
+    [form, genOptions, abcForm, generatedImages, abcSets, selectedAnchorId, selectedAnchorIds, materialAnchor, lastBatchId, statusMessage, saveFolder],
     schedulePersist,
     { deep: true }
   );
 
   return {
     form,
+    genOptions,
     abcForm,
     generatedImages,
     abcSets,

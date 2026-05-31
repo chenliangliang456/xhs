@@ -98,6 +98,9 @@ export const aiApi = {
   generate: (data) => request.post('/ai/generate', data),
   /** 与定时发布同款逻辑（套装编号 + 配图提示），仅文案、不发布 */
   generateViral: (data) => request.post('/ai/generate-viral', data),
+  /** ABC 套装 → 热门种草文案（标题+正文+标签） */
+  generateAbcCopy: (data) =>
+    request.post('/ai/generate-abc-copy', data, { timeout: 120000 }),
 };
 
 /** 发布任务 */
@@ -138,6 +141,9 @@ export const imageGenApi = {
   health: () => request.get('/image-gen/health'),
   generate: (data) => request.post('/image-gen/generate', data, { timeout: 180000 }),
   poll: (data) => request.post('/image-gen/poll', data, { timeout: 180000 }),
+  /** 单张保存（线上逐张上传，避免 413） */
+  saveOneToMaterials: (item) =>
+    request.post('/image-gen/save-one', item, { timeout: 120000 }),
   saveToMaterials: (images) =>
     request.post('/image-gen/save-to-materials', { images }, { timeout: 120000 }),
   generateAbcSet: (data) =>

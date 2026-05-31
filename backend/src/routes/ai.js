@@ -2,7 +2,7 @@
  * AI 文案生成路由
  */
 const express = require('express');
-const { generateCopy } = require('../services/ai');
+const { generateCopy, generateAbcViralCopy } = require('../services/ai');
 const { authMiddleware } = require('../middleware/auth');
 const { resolveImagePaths } = require('../utils/imagePaths');
 
@@ -127,6 +127,66 @@ router.post('/generate-viral', async (req, res) => {
       } else {
         message = `AI 接口暂不可用，已使用本地模拟文案${reason ? `（${reason}）` : ''}`;
       }
+    }
+
+    res.json({
+      success: true,
+      data: copy,
+      meta: _meta,
+      message,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+/**
+ * POST /api/ai/generate-abc-copy
+ * 根据 ABC 套装配图 + 产品信息 + 小红书热门种草结构，生成标题/正文/标签
+ */
+router.post('/generate-abc-copy', async (req, res) => {
+  try {
+    const {
+      setIndex,
+      productCategory,
+      productInfo,
+      productDimensions,
+      genTags,
+      designPrompt,
+      styleKey,
+      imageDataUrls,
+      imageSources,
+    } = req.body;
+
+    if (!setIndex) {
+      return res.status(400).json({ success: false, message: '缺少套装编号' });
+    }
+    if (!productCategory && !productInfo) {
+      return res.status(400).json({ success: false, message: '请提供产品分类或产品信息' });
+    }
+
+    const sources = imageSources?.length ? imageSources : [];
+    const imagePaths = sources.length ? resolveImagePaths(sources) : [];
+
+    const result = await generateAbcViralCopy({
+      setIndex: String(setIndex),
+      productCategory: productCategory || '',
+      productInfo: productInfo || '',
+      productDimensions: productDimensions || '',
+      genTags: genTags || '',
+      designPrompt: designPrompt || '',
+      styleKey: styleKey || '',
+      imageDataUrls: Array.isArray(imageDataUrls) ? imageDataUrls : undefined,
+      imagePaths,
+    });
+
+    const { _meta, ...copy } = result;
+    const isMock = _meta?.mock;
+    let message = 'DeepSeek 热门种草文案生成成功';
+    if (isMock) {
+      message = isMock && _meta?.reason === 'not_configured'
+        ? '未配置 DeepSeek API，已使用热门结构模板文案（请在 backend/.env 填写 AI_API_URL 与 AI_API_KEY）'
+        : `DeepSeek 暂不可用，已使用热门结构模板文案${_meta?.reason ? `（${_meta.reason}）` : ''}`;
     }
 
     res.json({

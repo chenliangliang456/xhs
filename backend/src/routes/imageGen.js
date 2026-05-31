@@ -2,19 +2,19 @@
  * 批量文生图路由
  */
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
 const { authMiddleware } = require('../middleware/auth');
 const { getHealthPayload, runSubmit, runPoll } = require('../services/imageGen');
 const { runGenerateAbcSet } = require('../../../lib/abcGenerate');
-const { MATERIALS_DIR, FOLDERS, getNextIndex, standardFilename } = require('../services/materials');
+const { saveMaterialFromDataUrl } = require('../utils/saveMaterialImage');
 
 const router = express.Router();
-router.use(authMiddleware);
 
+/** 健康检查无需登录，避免 token 过期时误显示「API 未配置」 */
 router.get('/health', (req, res) => {
   res.json({ success: true, ...getHealthPayload() });
 });
+
+router.use(authMiddleware);
 
 router.post('/generate', async (req, res) => {
   try {
@@ -44,7 +44,17 @@ router.post('/generate-abc-set', async (req, res) => {
   }
 });
 
-/** 将 base64 图片保存到素材库 a/b/c 文件夹 */
+/** 单张保存（推荐，避免 Vercel 413） */
+router.post('/save-one', async (req, res) => {
+  try {
+    const saved = await saveMaterialFromDataUrl(req.body);
+    res.json({ success: true, data: saved, message: '已保存到素材库' });
+  } catch (err) {
+    res.status(err.status || 500).json({ success: false, message: err.message || '保存失败' });
+  }
+});
+
+/** 批量保存（兼容旧客户端；线上建议逐张调用 save-one） */
 router.post('/save-to-materials', async (req, res) => {
   try {
     const { images } = req.body;
@@ -54,40 +64,17 @@ router.post('/save-to-materials', async (req, res) => {
 
     const saved = [];
     for (const item of images) {
-      const folder = String(item.folder || 'a').toLowerCase();
-      if (!FOLDERS.includes(folder)) {
-        return res.status(400).json({ success: false, message: `folder 必须是 a、b 或 c` });
-      }
-
-      const dataUrl = String(item.dataUrl || '');
-      const match = dataUrl.match(/^data:([^;]+);base64,(.+)$/);
-      if (!match) {
-        return res.status(400).json({ success: false, message: '图片数据格式无效' });
-      }
-
-      const mime = match[1];
-      const ext = mime.includes('jpeg') ? 'jpg' : mime.includes('webp') ? 'webp' : 'png';
-      const index = item.index || getNextIndex(folder);
-      const filename = standardFilename(folder, index, `image.${ext}`);
-      const dir = path.join(MATERIALS_DIR, folder);
-      fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(path.join(dir, filename), Buffer.from(match[2], 'base64'));
-
-      saved.push({
-        folder,
-        filename,
-        index,
-        url: `/materials/${folder}/${filename}`,
-      });
+      saved.push(await saveMaterialFromDataUrl(item));
     }
 
     res.json({ success: true, data: saved, message: `已保存 ${saved.length} 张到素材库` });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message || '保存失败' });
+    const status = err.status || 500;
+    res.status(status).json({ success: false, message: err.message || '保存失败' });
   }
 });
 
-/** 保存 ABC 成套（a/b/c 同编号） */
+/** 保存 ABC 成套（a/b/c 同编号）— 服务端逐张写入 */
 router.post('/save-abc-set', async (req, res) => {
   try {
     const { anchor, bImage, cImage, setIndex } = req.body;
@@ -95,7 +82,7 @@ router.post('/save-abc-set', async (req, res) => {
       return res.status(400).json({ success: false, message: '缺少 A/B/C 图片数据' });
     }
 
-    const index = setIndex || getNextIndex('a');
+    const index = setIndex != null && setIndex !== '' ? String(setIndex) : undefined;
     const items = [
       { dataUrl: anchor.dataUrl, folder: 'a', index },
       { dataUrl: bImage.dataUrl, folder: 'b', index },
@@ -104,21 +91,14 @@ router.post('/save-abc-set', async (req, res) => {
 
     const saved = [];
     for (const item of items) {
-      const match = String(item.dataUrl).match(/^data:([^;]+);base64,(.+)$/);
-      if (!match) continue;
-      const mime = match[1];
-      const ext = mime.includes('jpeg') ? 'jpg' : mime.includes('webp') ? 'webp' : 'png';
-      const filename = standardFilename(item.folder, item.index, `image.${ext}`);
-      const dir = path.join(MATERIALS_DIR, item.folder);
-      fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(path.join(dir, filename), Buffer.from(match[2], 'base64'));
-      saved.push({ folder: item.folder, filename, index: item.index, url: `/materials/${item.folder}/${filename}` });
+      saved.push(await saveMaterialFromDataUrl(item));
     }
 
+    const idx = saved[0]?.index || index || '';
     res.json({
       success: true,
       data: saved,
-      message: `ABC 套装已保存为 a${index} / b${index} / c${index}`,
+      message: `ABC 套装已保存为 a${idx} / b${idx} / c${idx}`,
     });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message || '保存失败' });

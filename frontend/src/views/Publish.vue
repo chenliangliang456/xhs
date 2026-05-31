@@ -440,6 +440,20 @@ async function runScheduleNow() {
 onMounted(() => {
   loadSchedule();
   schedulePollTimer = setInterval(loadSchedule, 60000);
+  try {
+    const raw = sessionStorage.getItem('xhs-publish-draft');
+    if (raw) {
+      const draft = JSON.parse(raw);
+      if (draft.title) copyForm.title = draft.title;
+      if (draft.content) copyForm.content = draft.content;
+      if (Array.isArray(draft.tags)) copyForm.tags = [...draft.tags];
+      sessionStorage.removeItem('xhs-publish-draft');
+      currentStep.value = 2;
+      ElMessage.success('已载入 ABC 套装种草文案');
+    }
+  } catch {
+    // ignore
+  }
 });
 
 onUnmounted(() => {

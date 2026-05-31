@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const { config } = require('../config/env');
 const logger = require('../utils/logger');
+const { buildAbcViralPrompt, buildMockAbcCopy, EMOJI_REQUIREMENTS } = require('../../../lib/xhsTrends');
 
 /**
  * 获取 AI API 配置（来自 .env）
@@ -55,6 +56,8 @@ function buildPrompt(params) {
 
   return `你是一位专业的小红书爆款文案写手。请根据以下产品信息${setIndex ? '与配图' : ''}，生成小红书风格的种草文案。
 
+${EMOJI_REQUIREMENTS}
+
 产品名称：${productName}
 产品卖点：${sellingPoints}
 产品类型：${productType || '通用'}
@@ -63,8 +66,8 @@ function buildPrompt(params) {
 
 请严格以 JSON 格式返回，不要包含其他文字：
 {
-  "title": "小红书爆款标题（20字以内，带emoji）",
-  "content": "正文文案（300-500字，口语化种草风格，分段落）",
+  "title": "小红书爆款标题（20字以内，必须含2-3个emoji）",
+  "content": "正文文案（300-500字，口语化种草，每段带emoji，全文至少15个emoji）",
   "tags": ["标签1", "标签2", "标签3", "标签4", "标签5"]
 }`;
 }
@@ -117,13 +120,13 @@ function generateMockCopy(params) {
   const title = `${emojis[Math.floor(Math.random() * emojis.length)]} ${variant}${productName}｜${sellingPoints?.slice(0, 12) || angle}！`;
 
   const content =
-    `姐妹们！今天必须给你们安利这个${productName}！\n\n` +
-    `作为一个${targetAudience || '资深用户'}，我真的被它惊艳到了！\n\n` +
-    `${sellingPoints || '品质超赞，性价比超高'}\n\n` +
-    `✅ ${productType || '好物'}中的佼佼者\n` +
-    `✅ 适合${targetAudience || '所有人'}使用\n` +
-    `✅ ${style || '种草'}风格，真实体验\n\n` +
-    `用过的人都说好，赶紧冲！`;
+    `姐妹们！今天必须给你们安利这个${productName}！🌱✨\n\n` +
+    `作为一个${targetAudience || '资深用户'}，我真的被它惊艳到了！👀💕\n\n` +
+    `${sellingPoints || '品质超赞，性价比超高 🔥'}\n\n` +
+    `✅ ${productType || '好物'}中的佼佼者 🌟\n` +
+    `✅ 适合${targetAudience || '所有人'}使用 💚\n` +
+    `✅ ${style || '种草'}风格，真实体验 📸\n\n` +
+    `用过的人都说好，赶紧冲！💯🔥`;
 
   const tags = [
     productName,
@@ -142,7 +145,7 @@ function generateMockCopy(params) {
  */
 async function generateCopy(params) {
   const aiConfig = getAiConfig();
-  const { imagePaths, ...textParams } = params;
+  const { imagePaths, imageDataUrls, ...textParams } = params;
 
   if (aiConfig.forceMock || !aiConfig.url) {
     if (!aiConfig.url) logger.info('AI API 未配置，使用本地模拟生成');
@@ -185,9 +188,19 @@ async function generateCopy(params) {
         });
       }
       if (parts.length > 1) requestBody.messages[0].content = parts;
+    } else if (imageDataUrls && imageDataUrls.length > 0 && aiConfig.supportVision) {
+      const parts = [{ type: 'text', text: prompt }];
+      for (const dataUrl of imageDataUrls.slice(0, 3)) {
+        if (!String(dataUrl).startsWith('data:image/')) continue;
+        parts.push({
+          type: 'image_url',
+          image_url: { url: dataUrl },
+        });
+      }
+      if (parts.length > 1) requestBody.messages[0].content = parts;
     }
 
-    logger.info('调用 AI API 生成文案...');
+    logger.info(`调用 DeepSeek 生成文案 model=${aiConfig.model || 'deepseek-chat'}`);
     const response = await axios.post(aiConfig.url, requestBody, {
       headers,
       timeout: 60000,
@@ -226,4 +239,86 @@ async function generateCopy(params) {
   }
 }
 
-module.exports = { generateCopy, generateMockCopy };
+/**
+ * 基于 ABC 套装 + 热门种草结构生成文案（读图 + 热榜套路）
+ */
+async function generateAbcViralCopy(params) {
+  const aiConfig = getAiConfig();
+  const { imageDataUrls, imagePaths, ...rest } = params;
+  const prompt = buildAbcViralPrompt(rest);
+
+  if (aiConfig.forceMock || !aiConfig.url) {
+    await new Promise((r) => setTimeout(r, 600));
+    return {
+      ...buildMockAbcCopy(rest),
+      _meta: { mock: true, reason: aiConfig.url ? 'force_mock' : 'not_configured' },
+    };
+  }
+
+  try {
+    const headers = {
+      'Content-Type': 'application/json',
+      ...(aiConfig.headers || {}),
+    };
+    if (aiConfig.apiKey) headers.Authorization = `Bearer ${aiConfig.apiKey}`;
+
+    const requestBody = {
+      model: aiConfig.model || 'deepseek-chat',
+      messages: [{ role: 'user', content: prompt }],
+      ...(aiConfig.extraParams || {}),
+    };
+
+    if (aiConfig.supportVision) {
+      const parts = [{ type: 'text', text: prompt }];
+      if (imageDataUrls?.length) {
+        for (const dataUrl of imageDataUrls.slice(0, 3)) {
+          if (String(dataUrl).startsWith('data:image/')) {
+            parts.push({ type: 'image_url', image_url: { url: dataUrl } });
+          }
+        }
+      } else if (imagePaths?.length) {
+        for (const p of imagePaths.slice(0, 3)) {
+          if (!fs.existsSync(p)) continue;
+          const buf = fs.readFileSync(p);
+          const ext = path.extname(p).toLowerCase();
+          const mime =
+            ext === '.png' ? 'image/png' : ext === '.webp' ? 'image/webp' : 'image/jpeg';
+          parts.push({
+            type: 'image_url',
+            image_url: { url: `data:${mime};base64,${buf.toString('base64')}` },
+          });
+        }
+      }
+      if (parts.length > 1) requestBody.messages[0].content = parts;
+    }
+
+    logger.info(`DeepSeek 生成 ABC 种草文案 model=${aiConfig.model || 'deepseek-chat'}`);
+    const response = await axios.post(aiConfig.url, requestBody, {
+      headers,
+      timeout: 90000,
+    });
+
+    const rawContent =
+      response.data?.choices?.[0]?.message?.content ||
+      response.data?.content ||
+      response.data?.result ||
+      response.data;
+
+    const parsed = parseAiResponse(rawContent);
+    if (parsed) return { ...parsed, _meta: { mock: false } };
+
+    return {
+      ...buildMockAbcCopy(rest),
+      _meta: { mock: true, reason: 'parse_failed' },
+    };
+  } catch (error) {
+    const detail = extractApiError(error);
+    logger.error('ABC 种草文案失败:', detail);
+    if (aiConfig.fallbackMock) {
+      return { ...buildMockAbcCopy(rest), _meta: { mock: true, reason: detail } };
+    }
+    throw new Error(`种草文案生成失败: ${detail}`);
+  }
+}
+
+module.exports = { generateCopy, generateMockCopy, generateAbcViralCopy };
