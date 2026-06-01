@@ -1,8 +1,26 @@
 /** 素材/上传图片 URL — 支持前后端分域 + 多服务前缀 */
+
 const API_ORIGIN = (import.meta.env.VITE_API_ORIGIN || '').replace(/\/$/, '');
-const defaultApiPrefix = import.meta.env.PROD ? '/_/backend/api' : '/api';
-const API_PREFIX = (import.meta.env.VITE_API_PREFIX || defaultApiPrefix).replace(/\/$/, '');
-const ASSET_PREFIX = (import.meta.env.VITE_ASSET_PREFIX || '').replace(/\/$/, '');
+
+/** Vercel 多服务部署用 /_/backend；本地 Express 直连用 /api */
+function isVercelHosted() {
+  if (typeof window === 'undefined') return false;
+  const h = window.location.hostname;
+  return h.endsWith('.vercel.app') || h === 'vercel.app';
+}
+
+function detectDefaultApiPrefix() {
+  if (import.meta.env.VITE_API_PREFIX) return import.meta.env.VITE_API_PREFIX;
+  return isVercelHosted() ? '/_/backend/api' : '/api';
+}
+
+function detectDefaultAssetPrefix() {
+  if (import.meta.env.VITE_ASSET_PREFIX) return import.meta.env.VITE_ASSET_PREFIX;
+  return isVercelHosted() ? '/_/backend' : '';
+}
+
+const API_PREFIX = detectDefaultApiPrefix().replace(/\/$/, '');
+const ASSET_PREFIX = detectDefaultAssetPrefix().replace(/\/$/, '');
 
 export function assetUrl(path) {
   if (!path) return '';

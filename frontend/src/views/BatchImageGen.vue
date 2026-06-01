@@ -1019,6 +1019,12 @@ function onCardClick(img, event) {
 async function refreshApiStatus() {
   try {
     const data = await imageGenApi.health();
+    if (!data || typeof data !== 'object' || data.success !== true || typeof data.apiConfigured !== 'boolean') {
+      apiConfigured.value = false;
+      apiConfigExpanded.value = true;
+      ElMessage.warning('API 响应异常：本地请用 http://localhost:5173，或重启 start.sh 后刷新 3002');
+      return;
+    }
     if (data.maxCount) maxCount.value = data.maxCount;
     if (data.submitChunk) submitChunk.value = data.submitChunk;
     if (data.pollHint) pollHint.value = { ...pollHint.value, ...data.pollHint };
@@ -1030,6 +1036,10 @@ async function refreshApiStatus() {
     const msg = err?.response?.data?.message || err?.message || '';
     if (/未登录|Token|401/i.test(msg)) {
       ElMessage.warning('登录已过期，请重新登录后再生图');
+    } else if (typeof err?.response?.data === 'string' && err.response.data.includes('<!DOCTYPE')) {
+      ElMessage.warning('API 路径异常：本地请用 http://localhost:5173 或刷新 3002 后重试');
+    } else if (!err?.response) {
+      ElMessage.warning('无法连接本地后端，请确认已运行 bash start.sh');
     }
   }
   try {
