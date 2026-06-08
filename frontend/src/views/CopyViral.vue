@@ -2,26 +2,26 @@
   <div class="page-container copy-viral-page">
     <PageHero
       title="爆款文案生成"
-      subtitle="与「定时发布」使用同一套 AI 模型与提示词（含套装编号、配图理解）；仅生成文案，不会发帖或改动定时任务"
+      subtitle="DeepSeek 生成小红书爆款文案（含套装编号、配图理解）；仅生成文案，不会自动发帖"
       :image="PLACEHOLDERS.publish"
       badge="AI Copy"
     >
       <template #actions>
         <router-link to="/publish">
-          <el-button>去一键发布</el-button>
+          <el-button>去发布草稿</el-button>
         </router-link>
       </template>
     </PageHero>
 
     <div class="card-section">
       <el-alert type="info" :closable="false" show-icon style="margin-bottom: 20px">
-        从素材库选一套 <strong>aN + bN + cN</strong> 时，会自动带上与定时发布相同的<strong>套装编号与配图提示</strong>；不配图为纯文字爆款模式。
+        从素材库选一套 <strong>aN + bN + cN</strong> 时，会自动识别套装编号并理解配图；不配图为纯文字爆款模式。
         AI 配置见 <router-link to="/settings?tab=ai">系统设置 · AI</router-link>。
       </el-alert>
 
       <el-form label-width="100px" class="product-form">
         <el-form-item label="产品名称" required>
-          <el-input v-model="productForm.productName" placeholder="与定时发布 / 一键发布中填写方式相同" />
+          <el-input v-model="productForm.productName" placeholder="例：种子纸吊牌" />
         </el-form-item>
         <el-form-item label="产品卖点">
           <el-input v-model="productForm.sellingPoints" type="textarea" :rows="2" placeholder="核心卖点、差异化" />
@@ -50,7 +50,7 @@
       <div class="section-title">配图（可选）</div>
       <MaterialSelector v-model="images" />
       <p v-if="effectiveSetIndex" class="hint-line">
-        当前将按<strong>套装 #{{ effectiveSetIndex }}</strong> 生成（与定时发布同款配图理解）。
+        当前将按<strong>套装 #{{ effectiveSetIndex }}</strong> 生成（含配图理解）。
       </p>
     </div>
 

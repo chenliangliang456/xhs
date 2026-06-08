@@ -4,7 +4,7 @@
 const express = require('express');
 const { authMiddleware } = require('../middleware/auth');
 const { getHealthPayload, runSubmit, runPoll } = require('../services/imageGen');
-const { runGenerateAbcSet } = require('../../../lib/abcGenerate');
+const { runGenerateAbcSet, runGenerateCOnly } = require('../../../lib/abcGenerate');
 const { saveMaterialFromDataUrl } = require('../utils/saveMaterialImage');
 
 const router = express.Router();
@@ -41,6 +41,16 @@ router.post('/generate-abc-set', async (req, res) => {
     res.json({ success: true, ...data });
   } catch (err) {
     res.status(err.status || 500).json({ success: false, message: err.message || 'ABC 套装生成失败' });
+  }
+});
+
+/** 仅重生成 C 图（产品视觉拆解 / 标准信息） */
+router.post('/generate-c-only', async (req, res) => {
+  try {
+    const data = await runGenerateCOnly(req.body);
+    res.json({ success: true, ...data });
+  } catch (err) {
+    res.status(err.status || 500).json({ success: false, message: err.message || 'C 图生成失败' });
   }
 });
 

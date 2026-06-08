@@ -13,9 +13,6 @@ cd "$ROOT/frontend" && npm run build
 sleep 1
 
 echo "🚀 启动后端 (端口 3002，含前端页面)..."
-export PLAYWRIGHT_BROWSERS_PATH="${PLAYWRIGHT_BROWSERS_PATH:-$HOME/Library/Caches/ms-playwright}"
-# 避免 Cursor/沙箱把浏览器指到临时目录
-unset PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD
 cd "$ROOT/backend" && node src/app.js &
 sleep 2
 

@@ -5,7 +5,7 @@
         <div class="brand-mark">红</div>
         <div v-show="!collapsed" class="brand-text">
           <span class="brand-name">创作工作台</span>
-          <span class="brand-sub">小红书智能发布</span>
+          <span class="brand-sub">小红书内容创作</span>
         </div>
       </router-link>
 
@@ -101,10 +101,8 @@ const menuItems = [
   { path: '/home', title: '主界面', desc: '工作台首页', icon: 'HomeFilled' },
   { path: '/batch-image', title: '批量生图', desc: 'AI · ABC 套装', icon: 'MagicStick' },
   { path: '/materials', title: '素材库', desc: 'A/B/C 成套', icon: 'Picture' },
-  { path: '/copy-viral', title: '爆款文案', desc: '同款 AI · 只生文', icon: 'EditPen' },
-  { path: '/publish', title: '一键发布', desc: 'AI 文案 · 多账号', icon: 'Upload' },
-  { path: '/accounts', title: '账号管理', desc: '登录与 Cookie', icon: 'User' },
-  { path: '/records', title: '发布记录', desc: '历史与重发', icon: 'Document' },
+  { path: '/copy-viral', title: '爆款文案', desc: 'DeepSeek · 只生文', icon: 'EditPen' },
+  { path: '/publish', title: '发布草稿', desc: '复制文案 · 手动发', icon: 'DocumentCopy' },
   { path: '/settings', title: '系统设置', desc: 'API 配置', icon: 'Setting' },
 ];
 

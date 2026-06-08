@@ -5,8 +5,8 @@
       <div class="visual-overlay" />
       <div class="visual-content">
         <div class="visual-badge">创作工作台</div>
-        <h2>从小红书内容<br />到多账号一键发布</h2>
-        <p>AI 批量生图 · 智能文案 · 浏览器自动发布</p>
+        <h2>从小红书内容<br />到 ABC 成套素材</h2>
+        <p>AI 批量生图 · DeepSeek 文案 · 复制后手动发布</p>
         <div class="feature-list">
           <div v-for="f in features" :key="f" class="feature-item">
             <el-icon><CircleCheck /></el-icon>
@@ -79,10 +79,10 @@ const formRef = ref(null);
 const loading = ref(false);
 
 const features = [
-  'AI 批量文生图，一键打包下载',
-  '素材库 A/B/C 成套搭配',
-  'DeepSeek 智能文案生成',
-  'Playwright 浏览器自动发布',
+  'AI 批量文生图，ABC 套装一键生成',
+  '素材库 A/B/C 成套管理',
+  'DeepSeek 智能种草文案',
+  '复制文案 · 手机 App 手动发布',
 ];
 
 const form = reactive({

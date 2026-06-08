@@ -24,35 +24,23 @@ const routes = [
         component: () => import('@/views/BatchImageGen.vue'),
         meta: { title: '批量生图', icon: 'MagicStick' },
       },
-  {
-    path: 'materials',
-    name: 'Materials',
-    component: () => import('@/views/Materials.vue'),
-    meta: { title: '我的素材库', icon: 'Picture' },
-  },
-  {
-    path: 'copy-viral',
-    name: 'CopyViral',
-    component: () => import('@/views/CopyViral.vue'),
-    meta: { title: '爆款文案', icon: 'EditPen' },
-  },
-  {
-    path: 'publish',
+      {
+        path: 'materials',
+        name: 'Materials',
+        component: () => import('@/views/Materials.vue'),
+        meta: { title: '我的素材库', icon: 'Picture' },
+      },
+      {
+        path: 'copy-viral',
+        name: 'CopyViral',
+        component: () => import('@/views/CopyViral.vue'),
+        meta: { title: '爆款文案', icon: 'EditPen' },
+      },
+      {
+        path: 'publish',
         name: 'Publish',
         component: () => import('@/views/Publish.vue'),
-        meta: { title: '一键发布', icon: 'Upload' },
-      },
-      {
-        path: 'accounts',
-        name: 'Accounts',
-        component: () => import('@/views/Accounts.vue'),
-        meta: { title: '账号管理', icon: 'User' },
-      },
-      {
-        path: 'records',
-        name: 'Records',
-        component: () => import('@/views/Records.vue'),
-        meta: { title: '发布记录', icon: 'Document' },
+        meta: { title: '发布草稿', icon: 'DocumentCopy' },
       },
       {
         path: 'settings',

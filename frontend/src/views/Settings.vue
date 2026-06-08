@@ -44,39 +44,6 @@
         </div>
       </el-tab-pane>
 
-      <el-tab-pane label="小红书发布接口" name="xhs">
-        <div class="card-section">
-          <el-descriptions :column="1" border>
-            <el-descriptions-item label="状态">
-              <el-tag
-                :type="settings?.xhsApi?.configured ? 'success' : settings?.xhsApi?.browserPublish ? 'success' : 'warning'"
-                size="small"
-              >
-                {{
-                  settings?.xhsApi?.configured
-                    ? 'HTTP 接口已配置'
-                    : settings?.xhsApi?.browserPublish
-                      ? '浏览器自动发布（无需接口）'
-                      : '模拟模式'
-                }}
-              </el-tag>
-            </el-descriptions-item>
-            <el-descriptions-item label="发布模式">
-              {{ settings?.xhsApi?.publishMode || 'browser' }}
-            </el-descriptions-item>
-            <el-descriptions-item label="发布接口">
-              {{ settings?.xhsApi?.publishUrl || '（空，使用浏览器发帖）' }}
-            </el-descriptions-item>
-            <el-descriptions-item label="图片上传接口">
-              {{ settings?.xhsApi?.uploadUrl || '（空）' }}
-            </el-descriptions-item>
-          </el-descriptions>
-          <div class="env-hint">
-            对应变量：<code>XHS_PUBLISH_URL</code>、<code>XHS_UPLOAD_URL</code>
-          </div>
-        </div>
-      </el-tab-pane>
-
       <el-tab-pane label="AI 批量生图" name="imageGen">
         <div class="card-section">
           <el-descriptions :column="1" border>
@@ -97,25 +64,6 @@
           </el-descriptions>
           <div class="env-hint">
             对应变量：<code>IMAGE_GEN_API_BASE_URL</code>、<code>IMAGE_GEN_API_KEY</code>（或 <code>API_BASE_URL</code> / <code>API_KEY</code>）
-          </div>
-        </div>
-      </el-tab-pane>
-
-      <el-tab-pane label="发布策略" name="publish">
-        <div class="card-section">
-          <el-descriptions :column="1" border>
-            <el-descriptions-item label="账号发布间隔">
-              {{ settings?.publish?.interval }} ms
-            </el-descriptions-item>
-            <el-descriptions-item label="失败重试次数">
-              {{ settings?.publish?.retryCount }} 次
-            </el-descriptions-item>
-            <el-descriptions-item label="并发数">
-              {{ settings?.publish?.concurrency }}
-            </el-descriptions-item>
-          </el-descriptions>
-          <div class="env-hint">
-            对应变量：<code>PUBLISH_INTERVAL</code>、<code>PUBLISH_RETRY_COUNT</code>、<code>PUBLISH_CONCURRENCY</code>
           </div>
         </div>
       </el-tab-pane>
@@ -187,7 +135,7 @@ async function changePassword() {
 
 onMounted(() => {
   const tab = route.query.tab;
-  if (tab && ['ai', 'xhs', 'imageGen', 'publish', 'security'].includes(tab)) {
+  if (tab && ['ai', 'imageGen', 'security'].includes(tab)) {
     activeTab.value = tab;
   }
   loadSettings();

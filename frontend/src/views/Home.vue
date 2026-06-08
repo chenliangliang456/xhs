@@ -8,9 +8,9 @@
           <span class="hero-eyebrow">创作工作台</span>
           <h1>
             从小红书内容<br />
-            <em>到多账号一键发布</em>
+            <em>到 ABC 成套素材</em>
           </h1>
-          <p>AI 批量生图 · ABC 套装 · 智能文案 · 浏览器自动发布，一站式内容生产流水线</p>
+          <p>AI 批量生图 · ABC 套装 · DeepSeek 种草文案 · 复制后在 App 手动发布</p>
           <div class="hero-actions">
             <router-link to="/batch-image">
               <el-button type="primary" size="large" class="btn-hero">
@@ -20,8 +20,8 @@
             </router-link>
             <router-link to="/publish">
               <el-button size="large" class="btn-hero-outline">
-                <el-icon><Upload /></el-icon>
-                一键发布
+                <el-icon><DocumentCopy /></el-icon>
+                发布草稿
               </el-button>
             </router-link>
           </div>
@@ -132,12 +132,12 @@
           </div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon" style="background: rgba(16,185,129,0.1); color: #10b981">
-            <el-icon :size="24"><Promotion /></el-icon>
+          <div class="stat-icon" style="background: rgba(236,72,153,0.1); color: #ec4899">
+            <el-icon :size="24"><EditPen /></el-icon>
           </div>
           <div>
-            <span class="stat-label">发布模式</span>
-            <span class="stat-value">浏览器自动</span>
+            <span class="stat-label">DeepSeek 文案</span>
+            <span class="stat-value">{{ aiOk ? '已配置' : '待配置' }}</span>
           </div>
         </div>
         <router-link to="/settings" class="stat-card stat-link">
@@ -158,18 +158,19 @@
 import { ref, onMounted } from 'vue';
 import {
   MagicStick,
-  Upload,
+  DocumentCopy,
   Picture,
   ArrowRight,
   Monitor,
-  Promotion,
+  EditPen,
   Setting,
 } from '@element-plus/icons-vue';
 import { PLACEHOLDERS, FEATURE_CARDS, WORKFLOW_STEPS } from '@/constants/placeholders';
-import { healthApi, imageGenApi } from '@/api';
+import { healthApi, imageGenApi, settingsApi } from '@/api';
 
 const healthOk = ref(false);
 const imageGenOk = ref(false);
+const aiOk = ref(false);
 
 onMounted(async () => {
   try {
@@ -183,6 +184,12 @@ onMounted(async () => {
     imageGenOk.value = data.apiConfigured === true;
   } catch {
     imageGenOk.value = false;
+  }
+  try {
+    const res = await settingsApi.get();
+    aiOk.value = res.data?.aiApi?.configured === true;
+  } catch {
+    aiOk.value = false;
   }
 });
 </script>

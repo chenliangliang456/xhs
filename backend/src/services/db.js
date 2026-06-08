@@ -8,46 +8,20 @@ const { DATA_DIR } = require('../config/paths');
 
 const DB_PATH = path.join(DATA_DIR, 'db.json');
 
-// 默认数据结构
 const defaultData = {
   user: null,
-  accounts: [],
-  records: [],
   settings: {
     aiApi: {
       url: '',
       headers: {},
       apiKey: '',
-      model: 'gpt-3.5-turbo',
+      model: 'deepseek-chat',
       supportVision: false,
     },
-    xhsApi: {
-      publishUrl: '',
-      uploadUrl: '',
-    },
-    publish: {
-      interval: 3000,
-      retryCount: 2,
-      concurrency: 1,
-    },
   },
-  tasks: {},
-  schedule: {
-    enabled: false,
-    times: ['09:00', '14:00', '20:00'],
-    accountIds: [],
-    productForm: {
-      productName: '',
-      sellingPoints: '',
-      productType: '',
-      targetAudience: '',
-      style: '口语化种草风',
-    },
-    lastRuns: {},
-    usedSetIndexes: [],
-  },
-  scheduleLogs: [],
 };
+
+const LEGACY_KEYS = ['accounts', 'records', 'schedule', 'scheduleLogs', 'tasks'];
 
 let db = null;
 const isServerless = Boolean(process.env.VERCEL || process.env.VERCEL_ENV);
@@ -59,9 +33,18 @@ function createMemoryDb(initial) {
   };
 }
 
-/**
- * 初始化数据库
- */
+function stripLegacyPublishData(data) {
+  if (!data || typeof data !== 'object') return data;
+  for (const key of LEGACY_KEYS) {
+    delete data[key];
+  }
+  if (data.settings) {
+    delete data.settings.xhsApi;
+    delete data.settings.publish;
+  }
+  return data;
+}
+
 async function initDb() {
   if (isServerless) {
     db = createMemoryDb(defaultData);
@@ -69,12 +52,15 @@ async function initDb() {
     if (!fs.existsSync(DATA_DIR)) {
       fs.mkdirSync(DATA_DIR, { recursive: true });
     }
-    // 仅在非 Serverless 环境加载 lowdb，避免打包器裁剪导致模块异常
     const { JSONFilePreset } = require('lowdb/node');
     db = await JSONFilePreset(DB_PATH, defaultData);
+    const before = JSON.stringify(db.data);
+    stripLegacyPublishData(db.data);
+    if (JSON.stringify(db.data) !== before) {
+      await db.write();
+    }
   }
 
-  // 首次启动创建默认管理员账号 admin / admin123
   if (!db.data.user) {
     const hashedPassword = await bcrypt.hash('admin123', 10);
     db.data.user = {
@@ -82,15 +68,6 @@ async function initDb() {
       password: hashedPassword,
       createdAt: new Date().toISOString(),
     };
-    await db.write();
-  }
-
-  if (!db.data.schedule) {
-    db.data.schedule = { ...defaultData.schedule };
-    await db.write();
-  }
-  if (!Array.isArray(db.data.scheduleLogs)) {
-    db.data.scheduleLogs = [];
     await db.write();
   }
 
@@ -106,4 +83,4 @@ async function saveDb() {
   await getDb().write();
 }
 
-module.exports = { initDb, getDb, saveDb, defaultData };
+module.exports = { initDb, getDb, saveDb, defaultData, stripLegacyPublishData };

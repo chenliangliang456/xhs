@@ -1,5 +1,5 @@
 /**
- * 数据目录：本地为 backend/ 下；Vercel 为 /tmp（无持久化，仅演示/联调）
+ * 数据目录：本地为 backend/ 下；Vercel 为 /tmp
  */
 const path = require('path');
 const fs = require('fs');
@@ -19,11 +19,10 @@ const STORAGE_ROOT = getStorageRoot();
 const DATA_DIR = path.join(STORAGE_ROOT, 'data');
 const UPLOADS_DIR = path.join(STORAGE_ROOT, 'uploads');
 const MATERIALS_DIR = path.join(STORAGE_ROOT, 'materials');
-const PROFILES_DIR = path.join(STORAGE_ROOT, 'profiles');
 const LOGS_DIR = path.join(STORAGE_ROOT, 'logs');
 
 function ensureStorageDirs() {
-  for (const dir of [DATA_DIR, UPLOADS_DIR, MATERIALS_DIR, PROFILES_DIR, LOGS_DIR]) {
+  for (const dir of [DATA_DIR, UPLOADS_DIR, MATERIALS_DIR, LOGS_DIR]) {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
@@ -37,7 +36,6 @@ module.exports = {
   DATA_DIR,
   UPLOADS_DIR,
   MATERIALS_DIR,
-  PROFILES_DIR,
   LOGS_DIR,
   ensureStorageDirs,
 };

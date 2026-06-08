@@ -7,31 +7,6 @@ export const authApi = {
   changePassword: (data) => request.put('/auth/password', data),
 };
 
-/** 账号管理 */
-export const accountApi = {
-  list: () => request.get('/accounts'),
-  create: (data) => request.post('/accounts', data),
-  update: (id, data) => request.put(`/accounts/${id}`, data),
-  remove: (id) => request.delete(`/accounts/${id}`),
-  toggle: (id) => request.patch(`/accounts/${id}/toggle`),
-};
-
-/** 小红书浏览器登录（自动获取 Cookie） */
-export const accountCookieApi = {
-  start: (accountId) => request.post('/accounts/cookie/start', accountId ? { accountId } : {}),
-  getStatus: (sessionId) => request.get(`/accounts/cookie/${sessionId}/status`),
-  confirm: (sessionId, data) => request.post(`/accounts/cookie/${sessionId}/confirm`, data),
-  cancel: (sessionId) => request.delete(`/accounts/cookie/${sessionId}`),
-};
-
-/** 小红书扫码登录 */
-export const accountQrApi = {
-  start: () => request.post('/accounts/qr/start'),
-  getStatus: (sessionId) => request.get(`/accounts/qr/${sessionId}/status`),
-  confirm: (sessionId, data) => request.post(`/accounts/qr/${sessionId}/confirm`, data),
-  cancel: (sessionId) => request.delete(`/accounts/qr/${sessionId}`),
-};
-
 /** 素材库 */
 export const materialApi = {
   list: () => request.get('/materials'),
@@ -44,7 +19,6 @@ export const materialApi = {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   },
-  /** 上传整个文件夹（含 a/b/c 子目录） */
   uploadFolder: (files, targetFolder) => {
     const formData = new FormData();
     files.forEach((file) => {
@@ -62,7 +36,6 @@ export const materialApi = {
   remove: (folder, filename) => request.delete(`/materials/${folder}/${filename}`),
   removeSet: (index) => request.delete(`/materials/set/${index}`),
   batchRemove: (items) => request.post('/materials/batch-delete', { items }),
-  /** 成套：/materials/download-zip ；单文件夹：?folder=a */
   downloadZipUrl: (folder) => {
     const q =
       folder && ['a', 'b', 'c'].includes(folder) ? `?folder=${folder}` : '';
@@ -76,7 +49,7 @@ export const materialApi = {
   },
 };
 
-/** 构建发布用图片源 */
+/** 构建 AI 文案配图源 */
 export function buildImageSources(images) {
   return images.map((img) => {
     if (img.source === 'material') {
@@ -85,6 +58,7 @@ export function buildImageSources(images) {
     return { source: 'upload', filename: img.filename };
   });
 }
+
 export const uploadApi = {
   upload: (formData) =>
     request.post('/upload', formData, {
@@ -96,39 +70,14 @@ export const uploadApi = {
 /** AI 文案生成 */
 export const aiApi = {
   generate: (data) => request.post('/ai/generate', data),
-  /** 与定时发布同款逻辑（套装编号 + 配图提示），仅文案、不发布 */
   generateViral: (data) => request.post('/ai/generate-viral', data),
-  /** ABC 套装 → 热门种草文案（标题+正文+标签） */
   generateAbcCopy: (data) =>
     request.post('/ai/generate-abc-copy', data, { timeout: 120000 }),
-};
-
-/** 发布任务 */
-export const publishApi = {
-  create: (data) => request.post('/publish', data),
-  getStatus: (taskId) => request.get(`/publish/${taskId}`),
-  republish: (recordId, data) => request.post(`/publish/republish/${recordId}`, data),
-};
-
-/** 定时发布 */
-export const scheduleApi = {
-  get: () => request.get('/schedule'),
-  update: (data) => request.put('/schedule', data),
-  logs: (limit = 30) => request.get('/schedule/logs', { params: { limit } }),
-  runNow: (data) => request.post('/schedule/run-now', data || {}, { timeout: 600000 }),
-  resetToday: () => request.post('/schedule/reset-today'),
-};
-
-/** 发布记录 */
-export const recordApi = {
-  list: (params) => request.get('/records', { params }),
-  detail: (id) => request.get(`/records/${id}`),
 };
 
 /** 系统配置 */
 export const settingsApi = {
   get: () => request.get('/settings'),
-  update: (data) => request.put('/settings', data), // 已废弃，配置改由 .env 管理
 };
 
 /** 健康检查 */
@@ -141,13 +90,14 @@ export const imageGenApi = {
   health: () => request.get('/image-gen/health'),
   generate: (data) => request.post('/image-gen/generate', data, { timeout: 180000 }),
   poll: (data) => request.post('/image-gen/poll', data, { timeout: 180000 }),
-  /** 单张保存（线上逐张上传，避免 413） */
   saveOneToMaterials: (item) =>
     request.post('/image-gen/save-one', item, { timeout: 120000 }),
   saveToMaterials: (images) =>
     request.post('/image-gen/save-to-materials', { images }, { timeout: 120000 }),
   generateAbcSet: (data) =>
     request.post('/image-gen/generate-abc-set', data, { timeout: 180000 }),
+  generateCOnly: (data) =>
+    request.post('/image-gen/generate-c-only', data, { timeout: 180000 }),
   saveAbcSet: (data) =>
     request.post('/image-gen/save-abc-set', data, { timeout: 120000 }),
 };

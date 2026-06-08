@@ -8,7 +8,6 @@ materials/**/*
 !materials/c/.gitkeep
 data/db.json
 backend/data/db.json
-profiles/
 .DS_Store
 *.log
 .env
