@@ -78,6 +78,7 @@ export const aiApi = {
 /** 系统配置 */
 export const settingsApi = {
   get: () => request.get('/settings'),
+  saveApiKeys: (data) => request.put('/settings/api-keys', data),
 };
 
 /** 健康检查 */
@@ -100,4 +101,12 @@ export const imageGenApi = {
     request.post('/image-gen/generate-c-only', data, { timeout: 180000 }),
   saveAbcSet: (data) =>
     request.post('/image-gen/save-abc-set', data, { timeout: 120000 }),
+};
+
+/** GPT 开放生图 — 无额度限制备用通道 */
+export const gptOpenApi = {
+  health: () => request.get('/gpt-open/health'),
+  think: (data) => request.post('/gpt-open/think', data, { timeout: 120000 }),
+  generate: (data) => request.post('/gpt-open/generate', data, { timeout: 180000 }),
+  poll: (data) => request.post('/gpt-open/poll', data, { timeout: 180000 }),
 };

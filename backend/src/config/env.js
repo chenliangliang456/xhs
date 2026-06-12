@@ -36,6 +36,23 @@ const config = {
     apiBaseUrl: process.env.IMAGE_GEN_API_BASE_URL || process.env.API_BASE_URL || '',
     apiKey: process.env.IMAGE_GEN_API_KEY || process.env.API_KEY || '',
   },
+
+  gptOpen: {
+    imageApiBaseUrl:
+      process.env.GPT_OPEN_IMAGE_API_BASE_URL ||
+      process.env.IMAGE_GEN_API_BASE_URL ||
+      process.env.API_BASE_URL ||
+      '',
+    imageApiKey:
+      process.env.GPT_OPEN_IMAGE_API_KEY ||
+      process.env.IMAGE_GEN_API_KEY ||
+      process.env.API_KEY ||
+      '',
+    imageModel: process.env.GPT_OPEN_IMAGE_MODEL || 'gpt-image-2',
+    chatUrl: process.env.GPT_OPEN_CHAT_URL || process.env.AI_API_URL || '',
+    chatApiKey: process.env.GPT_OPEN_CHAT_API_KEY || process.env.AI_API_KEY || '',
+    chatModel: process.env.GPT_OPEN_CHAT_MODEL || process.env.AI_API_MODEL || 'deepseek-chat',
+  },
 };
 
 function getPublicSettings() {
@@ -53,6 +70,16 @@ function getPublicSettings() {
       apiBaseUrl: config.imageGen.apiBaseUrl,
       apiKey: config.imageGen.apiKey ? '******' : '',
       configured: !!(config.imageGen.apiBaseUrl && config.imageGen.apiKey),
+    },
+    gptOpen: {
+      imageApiBaseUrl: config.gptOpen.imageApiBaseUrl,
+      imageApiKey: config.gptOpen.imageApiKey ? '******' : '',
+      imageModel: config.gptOpen.imageModel,
+      chatUrl: config.gptOpen.chatUrl,
+      chatApiKey: config.gptOpen.chatApiKey ? '******' : '',
+      chatModel: config.gptOpen.chatModel,
+      imageConfigured: !!(config.gptOpen.imageApiBaseUrl && config.gptOpen.imageApiKey),
+      thinkConfigured: !!(config.gptOpen.chatUrl && config.gptOpen.chatApiKey),
     },
   };
 }

@@ -17,6 +17,7 @@ const aiRoutes = require('./routes/ai');
 const settingsRoutes = require('./routes/settings');
 const materialsRoutes = require('./routes/materials');
 const imageGenRoutes = require('./routes/imageGen');
+const gptOpenImageRoutes = require('./routes/gptOpenImage');
 const { initMaterialsDir } = require('./services/materials');
 
 const app = express();
@@ -83,6 +84,7 @@ safeUse('/api/ai', aiRoutes);
 safeUse('/api/settings', settingsRoutes);
 safeUse('/api/materials', materialsRoutes);
 safeUse('/api/image-gen', imageGenRoutes);
+safeUse('/api/gpt-open', gptOpenImageRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({
@@ -122,6 +124,8 @@ async function ensureInitialized() {
         throw new Error(`数据库模块加载失败：initDb 不可用（exports: ${Object.keys(mod || {}).join(',') || 'none'}）`);
       }
       await initDb();
+      const { syncProcessEnv } = require('./services/settingsStore');
+      syncProcessEnv();
       initMaterialsDir();
       appReady = true;
     })();

@@ -25,6 +25,12 @@ const routes = [
         meta: { title: '批量生图', icon: 'MagicStick' },
       },
       {
+        path: 'gpt-image',
+        name: 'GptImageGen',
+        component: () => import('@/views/GptImageGen.vue'),
+        meta: { title: 'GPT 开放生图', icon: 'PictureFilled' },
+      },
+      {
         path: 'materials',
         name: 'Materials',
         component: () => import('@/views/Materials.vue'),

@@ -13,10 +13,20 @@ const defaultData = {
   settings: {
     aiApi: {
       url: '',
-      headers: {},
       apiKey: '',
-      model: 'deepseek-chat',
-      supportVision: false,
+      model: '',
+    },
+    imageGen: {
+      apiBaseUrl: '',
+      apiKey: '',
+    },
+    gptOpen: {
+      imageApiBaseUrl: '',
+      imageApiKey: '',
+      imageModel: '',
+      chatUrl: '',
+      chatApiKey: '',
+      chatModel: '',
     },
   },
 };
@@ -47,7 +57,11 @@ function stripLegacyPublishData(data) {
 
 async function initDb() {
   if (isServerless) {
-    db = createMemoryDb(defaultData);
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+    const { JSONFilePreset } = require('lowdb/node');
+    db = await JSONFilePreset(DB_PATH, defaultData);
   } else {
     if (!fs.existsSync(DATA_DIR)) {
       fs.mkdirSync(DATA_DIR, { recursive: true });
@@ -56,6 +70,17 @@ async function initDb() {
     db = await JSONFilePreset(DB_PATH, defaultData);
     const before = JSON.stringify(db.data);
     stripLegacyPublishData(db.data);
+    if (!db.data.settings) {
+      db.data.settings = JSON.parse(JSON.stringify(defaultData.settings));
+    } else {
+      db.data.settings = {
+        ...defaultData.settings,
+        ...db.data.settings,
+        aiApi: { ...defaultData.settings.aiApi, ...(db.data.settings.aiApi || {}), model: '' },
+        imageGen: { ...defaultData.settings.imageGen, ...(db.data.settings.imageGen || {}) },
+        gptOpen: { ...defaultData.settings.gptOpen, ...(db.data.settings.gptOpen || {}) },
+      };
+    }
     if (JSON.stringify(db.data) !== before) {
       await db.write();
     }

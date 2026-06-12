@@ -25,6 +25,14 @@ export const FEATURE_CARDS = [
     icon: 'MagicStick',
   },
   {
+    path: '/gpt-image',
+    title: 'GPT 开放生图',
+    desc: '无额度限制 · 上传修改 · 思考可见',
+    image: PLACEHOLDERS.batchImage,
+    accent: '#10b981',
+    icon: 'PictureFilled',
+  },
+  {
     path: '/materials',
     title: '素材库',
     desc: 'A / B / C 成套管理',

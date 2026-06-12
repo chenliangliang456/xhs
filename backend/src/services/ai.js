@@ -9,10 +9,15 @@ const logger = require('../utils/logger');
 const { buildAbcViralPrompt, buildMockAbcCopy, EMOJI_REQUIREMENTS } = require('../../../lib/xhsTrends');
 
 /**
- * 获取 AI API 配置（来自 .env）
+ * 获取 AI API 配置（设置页 + .env 合并）
  */
 function getAiConfig() {
-  return config.aiApi;
+  try {
+    const { getAiRuntimeConfig } = require('./settingsStore');
+    return getAiRuntimeConfig();
+  } catch {
+    return config.aiApi;
+  }
 }
 
 /**

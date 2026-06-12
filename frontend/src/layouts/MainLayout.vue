@@ -100,6 +100,7 @@ const collapsed = ref(false);
 const menuItems = [
   { path: '/home', title: '主界面', desc: '工作台首页', icon: 'HomeFilled' },
   { path: '/batch-image', title: '批量生图', desc: 'AI · ABC 套装', icon: 'MagicStick' },
+  { path: '/gpt-image', title: 'GPT 开放生图', desc: '无限制 · 思考模式', icon: 'PictureFilled' },
   { path: '/materials', title: '素材库', desc: 'A/B/C 成套', icon: 'Picture' },
   { path: '/copy-viral', title: '爆款文案', desc: 'DeepSeek · 只生文', icon: 'EditPen' },
   { path: '/publish', title: '发布草稿', desc: '复制文案 · 手动发', icon: 'DocumentCopy' },
