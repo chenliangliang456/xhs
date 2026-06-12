@@ -57,16 +57,12 @@ function stripLegacyPublishData(data) {
 
 async function initDb() {
   if (isServerless) {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-    const { JSONFilePreset } = require('lowdb/node');
-    db = await JSONFilePreset(DB_PATH, defaultData);
+    db = createMemoryDb(defaultData);
   } else {
     if (!fs.existsSync(DATA_DIR)) {
       fs.mkdirSync(DATA_DIR, { recursive: true });
     }
-    const { JSONFilePreset } = require('lowdb/node');
+    const { JSONFilePreset } = await import('lowdb/node');
     db = await JSONFilePreset(DB_PATH, defaultData);
     const before = JSON.stringify(db.data);
     stripLegacyPublishData(db.data);
